@@ -1,2 +1,2 @@
 # StudyNotes
-Study notes
+This is the git for storing study note.
