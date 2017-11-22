@@ -1,0 +1,419 @@
+﻿1. Callback Hell:
+	what: Long nesting asynchronous functions in Javascript/ Node.js; The problem in Javascript is that the only way to "freeze" a computation and have the "rest of it" execute latter (asynchronously) is to put "the rest of it" inside a callback.
+	getData(function(x){
+		getMoreData(x, function(y){
+			getMoreData(y, function(z){ 
+				...
+			});
+		});
+	});
+	When: 
+	How can you avoid callback hells?
+
+	modularization(模块化): break callbacks into independent functions
+	use a control flow library, like async
+	use generators with Promises
+	use async/await (note that it is only available in the latest v7 release and not in the LTS version - you can read our experimental async/await how-to here)
+	
+2. What is a Promise:
+	concurrency primitive(并发原语)
+ 
+3. npm-scripts: How npm handles the "scripts" field
+	npm supports the "scripts" property of the package.json script, for the following scripts:
+	-prepublish: Run BEFORE the package is published. (Also run on local npm install without any arguments.)
+	-publish, postpublish: Run AFTER the package is published.
+	-preinstall: Run BEFORE the package is installed
+	-install, postinstall: Run AFTER the package is installed.
+	-preuninstall, uninstall: Run BEFORE the package is uninstalled.
+	-postuninstall: Run AFTER the package is uninstalled.
+	-preversion, version: Run BEFORE bump the package version.
+	-postversion: Run AFTER bump the package version.
+	-pretest, test, posttest: Run by the npm test command.
+	-prestop, stop, poststop: Run by the npm stop command.
+	-prestart, start, poststart: Run by the npm start command.
+	-prerestart, restart, postrestart: Run by the npm restart command. Note: npm restart will run the stop and start scripts if no restart script is provided.
+
+4. FileReader:
+	var reader = new FileReader();
+	reader.onload = function(evt){var base64String = evt.target.result;}
+	
+	-FileReader.abort()
+	Aborts the read operation. Upon return, the readyState will be DONE.
+	-FileReader.readAsArrayBuffer()
+	Starts reading the contents of the specified Blob, once finished, the result attribute contains an ArrayBuffer representing the file's data.
+	-FileReader.readAsBinaryString() 
+	Starts reading the contents of the specified Blob, once finished, the result attribute contains the raw binary data from the file as a string.
+	-FileReader.readAsDataURL()
+	Starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
+	-FileReader.readAsText()
+	Starts reading the contents of the specified Blob, once finished, the result attribute contains the contents of the file as a text string.
+	
+5. Communication between node server and clients
+	-By ajax call:
+	-Warp virable into cookie or session:
+	
+	app.get('/auth/ares/callback',
+		passport.authenticate('oauth2', { failureRedirect: '/' }),
+		function(req, res) {
+			res.cookie('token',req.user.token,{maxAge:60000});
+			res.redirect('http://localhost:3000/#!/');
+		});
+	
+6. Objected oriented: abstract
+	An abstract calss is a class which cannot be instantiated. It is used to creating an inheriting subclass that can be instantiated.
+roles:
+	a.define methods which can be used by the inheriting subclass.
+	b.define abstract method which the inheriting subclass must implement.
+	c.provide a common interface which allows the subclass to be interchanged with all other subclasses.
+example:
+	abstract public class AbstractClass
+	{
+		abstract public void abstractMethod();
+		public void implementedMethod() { System.out.print("implementedMethod()"); }
+		final public void finalMethod() { System.out.print("finalMethod()"); }
+	}
+	
+7. String to object mapping: "/, +/g" means "," followwed with multiple space.
+	function loadAll() {
+				var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
+				  Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
+				  Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
+				  Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
+				  North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
+				  South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
+				  Wisconsin, Wyoming';
+
+				return allStates.split(/, +/g).map( function (state) {
+					return {
+						value: state.toLowerCase(),
+						display: state
+					};
+				});
+	
+8. Error Handling in angular.toJson:
+	The Safari browser throw a RangeError instead of returning null when it tries to stringify a Date object with an invalid date value. The only reliable way to prevent this is to monkeypatch(dirty fix like "Math.pi=3" which works only when compling) the Date.prototype.toJSON method as follows:
+	
+	var _DatetoJSON = Date.prototype.toJSON;
+	Date.prototype.toJSON = function(){
+		try{
+			return _DatetoJSON.call(this);
+		} catch(e){
+			if(e instanceof RangeError){
+				return null;
+			}
+			throw e;
+		}
+	};
+
+9. angular.noop: no operation
+	angular.noop is an empty function that can be used as a placeholder when you need to pass some function as a param.
+	function foo(callback){
+		// do its job
+		return callback();
+	}
+	
+	foo(angular.noop); //works the same
+	foo(function(){});
+	
+10. angular $stateProvider prevent $state change:
+	$rootScope.$on('$stateChangeStart', 
+		  function(event, toState, toParams, fromState, fromParams){ 
+			  event.preventDefault(); 
+			  // transitionTo() promise will be rejected with 
+			  // a 'transition prevented' error
+	 })
+	 
+11. Transclusion in AngularJS:
+ it's essentially just moving some DOM elements around. I think the bigger problems are tangential:
+	a.The API is tricky, with its higher-order functions and "magic arguments".
+	b.Parts of the API are deprecated, and it can be hard to figure out which parts.
+	c.The documentation uses lots of big words ("a transclude linking function pre-bound to the correct transclusion scope").
+	d.There are actually two separate features provided by the same API: Regular transclusion and element transclusion.
+	
+12. Running Node as Linux service via ssh
+	$nohup node serverDB.js & > log.txt
+	&: allow commands run in backgroun
+	nohup: application would not stop when the window goes to sleep
+	>: if there is console.log export it to log.txt
+	
+	How to kill the process:
+	$ps -ef
+	get the process ID
+	$kill -9 [process ID]
+	
+13. Express.js API with angular:
+	For COR http request, angular will send an OPTION request first; Express should allowed COR in its header:
+	
+	// apply this rule to all requests accessing any URL/URI
+	app.all('*', function(req, res, next) {
+		// add details of what is allowed in HTTP request headers to the response headers
+		res.header('Access-Control-Allow-Origin', req.headers.origin);
+		res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+		res.header('Access-Control-Allow-Credentials', false);
+		res.header('Access-Control-Max-Age', '86400');
+		res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+		// the next() function continues execution and will move onto the requested URL/URI
+		next();
+	});	
+	
+	app.get('/url',function(req,res){
+		//do something here
+		res.send("information");
+	});
+	
+	app.listen(3000);
+	
+	In angular, using $http.get for AJAX call;
+
+14. Serving https via express.js
+	This requires fs module to read the SSL key and certification and https module to hosting the server;
+	
+	var fs = require('fs');
+	var https = require('https');
+	
+	var privateKey = fs.readFileSync( 'ssl/wildcard_emerson.key' );
+	var certificate = fs.readFileSync( 'ssl/wildcard_emerson.crt' );
+
+	var ssloption = {
+		ca: [fs.readFileSync('ssl/gd_1.crt'), fs.readFileSync('ssl/gd_2.crt'),fs.readFileSync('ssl/gd_3.crt')],
+		key:privateKey,
+		cert:certificate
+	};
+	var server = https.createServer(ssloption, app).listen(port, function(){
+		console.log("Express server listening on port " + port);
+	});
+
+15. ES6 features;
+	Default Parameters:
+	var link = function(height = 50, color = 'red', url = 'http://example.com'){
+		//do something
+	}
+	
+	Template Literals:
+	var name = 'Your name is ${first} ${last}';
+	
+	Multi-line Strings:
+	var fourAgreements = `You have the right to be you.
+    You can only be you when you do your best.`
+	
+	Destructuring Assignment:
+	var jsonMiddleware = require('body-parser').json
+	var body = req.body, // body has username and password
+	  username = body.username,
+	  password = body.password 
+	
+	ES6:
+	var { house, mouse} = $('body').data() // we'll get house and mouse variables
+	var {jsonMiddleware} = require('body-parser')
+	var {username, password} = req.body
+	
+	Arrow Function:
+	var logUpperCase = function() {
+	  this.string = this.string.toUpperCase()
+	  return () => console.log(this.string)
+	}
+
+	logUpperCase.call({ string: 'es6 rocks' })()
+	
+	Promise:
+	var wait1000 =  new Promise(function(resolve, reject) {
+	  setTimeout(resolve, 1000)
+	}).then(function() {
+	  console.log('Yay!')
+	})
+	
+	Class:
+	class baseModel {
+	  constructor(options = {}, data = []) { // class constructor
+			this.name = 'Base'
+		this.url = 'http://azat.co/api'
+			this.data = data
+		this.options = options
+		}
+
+		getName() { // class method
+			console.log(`Class name: ${this.name}`)
+		}
+	}
+
+16. Express query vs parameter: angular $http params refer to express query, while express parameter refers to child url.
+	angular side:
+	$http({
+		method:"{{method}}",
+		url:"{{url}}",
+		params:"{{parameters}}"
+	}).then();
+	
+	express side(needs to enable COR):
+	app.get('{{url}}',function(req,res,err){
+		req.send(res.query.parameter);
+	});
+	
+	express side:
+	app.get('{{url}}/:id',function(req,res,err){
+		req.send(res.params.id);
+	});
+	
+17. Date comparasion:
+	string to date: var date = new Date(dataString);
+	Warning: if dataString = null; then new Date(null) will be parsed as the starting of the system time (year 1968).
+	Compare:
+	var x = new Date("2000-1-1");
+	var y = new Date("1999-12-31");
+	x < y ; // false;
+	x > y ; // true;
+	
+18. syntax highlight in HTML with highlight.js:
+	a. Download the host version of highlight.js with supported language;
+	b. Install angular-highlight, which support highlight as directive;
+	c. in HTML:
+	<link rel="stylesheet" href="../node_modules/highlight/styles/agate.css"> //This is the theme stylesheet
+	<script src="../node_modules/highlight/highlight.pack.js"></script>
+    <script src="../node_modules/angular-highlightjs/angular-highlightjs.min.js"></script>
+	
+	<div hljs language="javascript">
+		{{your codes here}}
+	</div>
+	
+19. Angular Component
+	It's a special kind of directive that uses a simpler configuration for a component-based application structure.
+	when not to use component:
+	a. for dicrectives that need to perform actionns in compile and pre-link functions.
+	b. when you need directive definition options like priority, terminal, multi-element
+	c. when you need a directive that is triggered by an attribute or CSS class, rather than an element.
+	
+20. To make an object’s values immutable, use Object.freeze(). It has been around since ES5 and is widely available nowadays.
+
+	const foo = Object.freeze({
+		'bar': 27
+	});
+	foo.bar = 42; // throws a TypeError exception in strict mode;
+				  // silently fails in sloppy mode
+	console.log(foo.bar);
+	// → 27
+	Note that Object.freeze() is shallow: object values within a frozen object (i.e. nested objects) can still be mutated. 
+	
+21. web worker
+	attention: chrome don't allow web worker running locally.
+	index.html:
+	<!DOCTYPE HTML>
+	<html>
+	 <head>
+	  <meta charset="utf-8">
+	  <title>Worker example: One-core computation</title>
+	 </head>
+	 <body>
+	  <p>The highest prime number discovered so far is: <output id="result"></output></p>
+	  <script>
+	   var worker = new Worker('worker.js');
+	   worker.onmessage = function (event) {
+		 document.getElementById('result').textContent = event.data;
+	   };
+	  </script>
+	 </body>
+	</html>
+
+	worker.js:
+	var n = 1;
+	search: while (true) {
+	  n += 1;
+	  for (var i = 2; i <= Math.sqrt(n); i += 1)
+		if (n % i == 0)
+		 continue search;
+	  // found a prime!
+	  postMessage(n); // send a message back to the page
+	}
+
+22. $scope service and its inheritance:
+	<div ng-controller="parentController">
+		 {{myVariable}}
+		 <div ng-controller="childController">
+			  {{myVariable}}
+		 </div>
+	</div>
+	
+	1.your child controller should include a scope:{}
+	.controller('childController',  ['$scope', function($scope){
+	 scope:{}; //this prevents it from inheriting the parent scope variables
+	}])
+	
+23. Resolve promise before controller is loaded:
+	function getSomething(id) {
+		// There will always be a promise so always declare it.
+		var deferred = $q.defer();
+		if (Cache[id]) {
+			// Resolve the deferred $q object before returning the promise
+			deferred.resolve(Cache[id]); 
+			return deferred.promise;
+		} 
+		// else- not in cache 
+		$http.get('/someUrl', {id:id}).success(function(data){
+			// Store your data or what ever.... 
+			// Then resolve
+			deferred.resolve(data);               
+		}).error(function(data, status, headers, config) {
+			deferred.reject("Error: request returned status " + status); 
+		});
+		return deferred.promise;
+
+	}
+	
+24. Object.assign()
+This method is used to copy the value of all enumerable own properties from one or more source objects to a target object
+Properties in the target object will be overwritten by properties in the sources if they have the same key. 
+	var obj = { a: 1 };
+	var copy = Object.assign({}, obj);
+	console.log(copy); // { a: 1 }
+	-Deep copy
+	  obj1 = { a: 0 , b: { c: 0}};
+	  let obj3 = JSON.parse(JSON.stringify(obj1));
+	  obj1.a = 4;
+	  obj1.b.c = 4;
+	  console.log(JSON.stringify(obj3)); // { a: 0, b: { c: 0}}
+	-Merge objects with same properties
+	var o1 = { a: 1, b: 1, c: 1 };
+	var o2 = { b: 2, c: 2 };
+	var o3 = { c: 3 };
+
+	var obj = Object.assign({}, o1, o2, o3);
+	console.log(obj); // { a: 1, b: 2, c: 3 } // The properties are overwritten by other objects that have the same properties later in the parameters}}
+	
+25. Support templateUrl for Webpack
+	a.use angular2-template-loader
+	loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+	{test: /\.html$/, loader: 'html'}
+	b.replace templateUrl:'./app.component.html' with template: require('./app.component.html')
+	
+26. input type = "tel" will make mobile device display vitual tel number keyboard by default, while type = "number" won't
+
+27. margin:auto only works when element has style attribute "width".
+
+28. CSS vector engines, (vendor prefixes):
+-webkit for Chrome, Safari; -moz for Firefox, -o for Opera, -ms for Internet Explorer
+#transformedObject {
+     -moz-transform:    matrix(1.4488, -0.3882, 0.3882, 1.4489, 400px, -100px);
+     -webkit-transform: matrix(1.4488, -0.3882, 0.3882, 1.4489, 400, -100);
+     -o-transform:      matrix(1.4488, -0.3882, 0.3882, 1.4489, 400, -100);
+     transform:         matrix(1.4488, -0.3882, 0.3882, 1.4489, 400, -100);
+}
+
+transform: matrix3d(0.9, 0, 0, 0, 0, 0.9, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+transform: matrix3d(1.2, 0, 0, 0, 0, 1.2, 0, 0, 0, 0, 1, 0, 0, -100, 0, 1);
+
+29. Count word lines from a directory on UNIX-like system:
+	$find [path] -type f -exec cat {} \; -exec echo \; | wc -l
+	
+30. event.stopImmediatePropagation vs event.stopPropagation
+	event.stopPropagation() allows other handlers on the same element to be executed, while event.stopImmediatePropagation() prevents every event from running. 
+	
+31. Ford–Fulkerson algorithm
+	Ford–Fulkerson algorithm is a greedy algorithm that computes the maximum flow in a flow network.
+	The idea behind the algorithm is as follows: as long as there is a path from the source (start node) to the sink (end node), with available capacity on all edges in the path, we send flow along one of the paths. Then we find another path, and so on. A path with available capacity is called an augmenting path.
+	
+32. Database normalization
+	Database normalization, or simply normalization, is the process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. ... Informally, a relational database relation is often described as "normalized" if it meets third normal form.
+
+33. Remove Git Credentials
+git config credential.helper manager
+<user.name>
+<user.mail>

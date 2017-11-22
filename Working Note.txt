@@ -1,0 +1,528 @@
+1.Swiper
+Swiper is not compatible with all platforms, it is a modern touch slider which is focused only on modern apps/platforms to bring the best experience and simplicity.
+
+2.Create New Instance Without "New" Operator
+if the function was called without the new operator, it will automagically return a new instance.
+
+	function Terminal(file, args, opt) {
+	  if (!(this instanceof Terminal)) {
+		 return new Terminal(file, args, opt);
+		}
+	}
+	
+3.Javascript Arguments Objcet
+	The arguments object is a local variable available within all functions. You can refer to a function's arguments within the function by using the arguments object. This object contains an entry for each argument passed to the function, the first entry's index starting at 0. 
+example:
+	function test(){
+		var leng = arguments.length;
+		var result = 0;
+		for(var i=0;i<leng;i++){
+			result += arguments[i];
+		}
+		return result;
+	}
+
+4.jQuery check existance:
+	if($(selector).length>0){
+		// Do something
+	}
+	or
+	if($(selector).exists()){}
+	
+5.Using jQuery select2 with Angualr:
+	In order to use select2 with Angular SPA, create a customized directive:
+	
+app.directive("select2", function($timeout, $parse) {
+    return {
+        restrict: 'AC',
+        require: 'ngModel', //notice the applied element must have ng-model
+        link: function(scope, element, attrs) {
+            console.log(attrs);
+            $timeout(function() {
+                element.select2();
+                element.select2Initialized = true;
+            });
+
+            var refreshSelect = function() {
+                if (!element.select2Initialized) return;
+                $timeout(function() {
+                    element.trigger('change');
+                });
+            };
+
+            var recreateSelect = function () {
+                if (!element.select2Initialized) return;
+                $timeout(function() {
+                    element.select2('destroy');
+                    element.select2();
+                });
+            };
+
+            scope.$watch(attrs.ngModel, refreshSelect);
+
+            if (attrs.ngOptions) {
+                var list = attrs.ngOptions.match(/ in ([^ ]*)/)[1];
+                // watch for option list change
+                scope.$watch(list, recreateSelect);
+            }
+
+            if (attrs.ngDisabled) {
+                scope.$watch(attrs.ngDisabled, refreshSelect);
+            }
+        }
+    };
+});
+
+6.Get selected options in Angular:
+<div ng-app ng-controller="MyCtrl">
+  <select ng-model="referral.organization" ng-options="c for c in organizations"></select>
+</div>
+
+<script type='text/javascript'>
+  function MyCtrl($scope) {
+    $scope.organizations = ['a', 'b', 'c', 'd', 'e'];
+    $scope.referral = {
+      organization: $scope.organizations[2]
+    };
+  }
+</script>
+
+7.$http getting/ posting data
+singlePageModule.factory('sharedBooks', ['$http', '$rootScope', function($http, $rootScope) {
+    var books = [];
+
+    return {
+        getBooks: function() {
+            return $http.get(base_url + 'json/get_books_json').then(function(response) {
+                books = response.data;
+                $rootScope.$broadcast('handleSharedBooks',books);
+                return books;
+            })
+        },
+        saveBooks: function($params) {
+            return $http({
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                url: base_url + 'json/save_book',
+                method: "POST",
+                data: $params,
+            })
+                .success(function(addData) {
+                    books = addData;
+                    $rootScope.$broadcast('handleSharedBooks',books);
+                });
+        }
+    };
+}]);
+
+8.Angular http returns $$state object
+angular.module("test.controllers",["account"])
+.controller("TestCtrl",["$scope","users",
+    function(a,u){
+        a.user = u.getUser();
+        console.log(a.user);
+}]);
+The above code is returning a state object instead of the user object. But from the log, the state object has the user object within value.
+JavaScript I/O is usually, including in this case asynchronous. Your getUser call returns a $q promise. In order to unwrap it you have to chain to it and then unwrap it as such
+
+9. How can I reference the property name within an ng-Repeat
+<ul>
+    <li ng-repeat="(key,val) in data">{{key}}: {{val}}</li>
+</ul>
+
+10. Chrome Fakepath
+When uploading a file, the url is displayed as c:\fakePath\fileName
+The result of getValue() is entirely browser-dependent.
+However, this should have nothing to do with the upload succeeding or failing, as it is the content of the form field, not the path, which is ultimately put in the post to the server.
+
+11 Two Way Data Binding using jQuery Plugin
+If element value is changed by jQuery plugin, this change will not be motitored by $watch service, to notice the change. Add $scope.$apply() after jQuery value change.
+
+12. angular.copy()
+Allows angular to deep copy the object.
+
+13.Testing a Controller
+Because Angular separates logic from the view layer, it keeps controllers easy to test. Let's take a look at how we might test the controller below, which provides $scope.grade, which sets a property on the scope based on the length of the password.
+
+angular.module('app', [])
+.controller('PasswordController', function PasswordController($scope) {
+  $scope.password = '';
+  $scope.grade = function() {
+    var size = $scope.password.length;
+    if (size > 8) {
+      $scope.strength = 'strong';
+    } else if (size > 3) {
+      $scope.strength = 'medium';
+    } else {
+      $scope.strength = 'weak';
+    }
+  };
+});
+Because controllers are not available on the global scope, we need to use angular.mock.inject to inject our controller first. The first step is to use the module function, which is provided by angular-mocks. This loads in the module it's given, so it is available in your tests. We pass this into beforeEach, which is a function Jasmine provides that lets us run code before each test. Then we can use inject to access $controller, the service that is responsible for instantiating controllers.
+describe('PasswordController', function() {
+  beforeEach(module('app'));
+
+  var $controller;
+
+  beforeEach(inject(function(_$controller_){
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $controller = _$controller_;
+  }));
+
+  describe('$scope.grade', function() {
+    it('sets the strength to "strong" if the password length is >8 chars', function() {
+      var $scope = {};
+      var controller = $controller('PasswordController', { $scope: $scope });
+      $scope.password = 'longerthaneightchars';
+      $scope.grade();
+      expect($scope.strength).toEqual('strong');
+    });
+  });
+});
+
+14. arguments of function parameter
+javaScript has "argument" to represent the function parameter;
+var test = funct(x,y){
+	return argument[0] + argument[1]; //equivlant to x+y
+}
+
+15. Angular scroll to element:
+HTML:
+	<div class="fixed-header" ng-controller="headerCtrl">
+	  <a href="" ng-click="gotoAnchor(x)" ng-repeat="x in [1,2,3,4,5]">
+		Go to anchor {{x}}
+	  </a>
+	</div>
+	<div id="anchor{{x}}" class="anchor" ng-repeat="x in [1,2,3,4,5]">
+	  Anchor {{x}} of 5
+	</div>
+Controller:
+	angular.module('anchorScrollOffsetExample', [])
+	.run(['$anchorScroll', function($anchorScroll) {
+	  $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
+	}])
+	.controller('headerCtrl', ['$anchorScroll', '$location', '$scope',
+	  function($anchorScroll, $location, $scope) {
+		$scope.gotoAnchor = function(x) {
+		  var newHash = 'anchor' + x;
+		  if ($location.hash() !== newHash) {
+			// set the $location.hash to `newHash` and
+			// $anchorScroll will automatically scroll to it
+			$location.hash('anchor' + x);
+		  } else {
+			// call $anchorScroll() explicitly,
+			// since $location.hash hasn't changed
+			$anchorScroll();
+		  }
+		};
+	  }
+	]);
+	
+16. debounce/ setTimeOut
+	var myEfficientFn = debounce(function() {
+		// All the taxing stuff you do
+	}, 250);
+
+	window.addEventListener('resize', myEfficientFn);
+The function above will only fire once every quarter of a second instead of as quickly as it's triggered; an incredible performance boost in some cases.
+
+17.pass the this context to an anonymous forEach function
+
+down vote
+accepted
+Store the current this in some other variable in Chart like this
+
+function Chart() {
+    var self = this;
+    this.draw = function(data) {
+        data.forEach(function(value) {
+            //do something with values
+            console.log(self);
+        });
+    }
+};
+
+Also, you can pass the this like the following, as Array.prototype.forEach accepts this
+
+arr.forEach(callback[, thisArg])
+For example,
+
+this.draw = function(data) {
+    data.forEach(function(value) {
+        //do something with values
+        console.log(this);
+    }, this); // Pass the current object as the second parameter
+}
+
+18.jquery 3.0 url.indexOf error
+	Uncaught TypeError: url.indexOf is not a function
+	This error is caused by calling $("window").load() method, which has been deleted after jQuery 1.8. Instead, use .on() to register event linster.
+
+	$(window).on('load', function() { ... }); 
+	
+19. "NOT" operation:
+~ equals to -(n+1), two's compliment; so ~-1 = 0;
+~.indexOf() to check if sub string existed.
+
+20. "NaN":
+NaN is not equal to anything, including itself.
+NaN can be checked only by isNaN.
+NaN is sticky. Any math operation with NaN gives NaN.
+
+21.Good way to generate random number with min max value;
+	Rounding random number will make edge value less possible to be picked;
+var min=5, max=10;
+var rand = min + Math.random()*(max+1-min) ;
+rand = Math.floor(rand);
+alert(rand);
+	This code generate uniform probability.
+	
+22.Unlike languages like Java, C etc, variables in JavaScript survive after a loop. That’s again, because their scope is a function.
+	for(var i=0; i<5; i++) { }
+	alert(i) // 5, variable survives and keeps value
+	
+23. var a = undefined;
+	"a" in window; // return true: window = {a: undefined}
+
+24.Closure:
+	The inner function keeps a reference to the outer LexicalEnvironment.
+	The inner function may access variables from it any time even if the outer function is finished.
+	The browser keeps the LexicalEnvironment and all it’s properties(variables) in memory until there is an inner function which references it.
+This is called a closure.
+	There is an exception to general scope binding rule. When you create a function using new Function, it’s [[Scope]] points to window, not to current LexicalEnvironment.
+
+25. Arguments Object.prototype.tostring.call(arguments) = [object arguments]
+This type is internally almost same as Object. It only looks like array, because it’s keys are numeric and it has length, but here the similarity ends.
+	function sayHi(){
+		var args = Array.slice.call(argments);
+		args.join(':');
+	}
+
+26. Angular $sanitize
+The input is sanitized(cleared) by parsing the HTML into tokens. All safe tokens (from a whitelist) are then serialized back to properly escaped html string. This means that no unsafe input can make it into the returned string.
+
+The whitelist for URL sanitization of attribute values is configured using the functions aHrefSanitizationWhitelist and imgSrcSanitizationWhitelist of $compileProvider.
+
+The input may also contain SVG markup if this is enabled via $sanitizeProvider.
+
+27. Order of Dependency in Angular Controller
+	The order of dependency injection must be the same with the order of arguments array of the function.
+	for example:
+	angular.module('storageApp')
+    .controller('baseProductCtrl', ['$scope', 'dataFactory', '$http', function ($scope, dataFactory, $http){
+		// The order of $scope, dataFactory, $http must be the same within the function arguments
+	}]);
+	
+28. Make it look luxurious / It should appear classy
+	This means the client wants thin wide fonts like Trajan Pro or Caviar Dreams, preferably in all caps. Add to it plain metallic background and a lot of lettering space.
+	
+29. Route Provider Case Sensitivity:
+There is an option you can pass to $routeProvider to toggle case sensitivity:
+
+config(function ($routeProvider) {
+    $routeProvider.
+        when('/', { controller: 'TmpCtrl', templateUrl: '/app/home.html' }).
+        when('/foo', { controller: 'TmpCtrl', templateUrl: '/app/foo.html', caseInsensitiveMatch: true }).  
+        otherwise({ redirectTo: '/' });
+});
+
+30. Bitwise operators
+	Bitwise operators treat numbers as signed 32-bit integers.
+	Following bitwise operators are supported:
+	AND ( & )
+	OR ( | )
+	XOR ( ^ )
+	NOT ( ~ )
+	LEFT SHIFT ( << )
+	RIGHT SHIFT ( >> )
+	ZERO-FILL RIGHT SHIFT ( >>> )
+	Unlike C language, bitwise operations are not very fast in JavaScript: So they shouldn’t be used low-level optimizations.
+
+31. Smart Rounding
+	~~(12.34) == 2;
+	12.9 ^ 0 == 12;
+	-13.5 << 0 == 13;
+	
+32. Smart division by power of 2
+	alert( 5 >> 1 ) // integer division without a remainder: 5 / 2 = 2
+	alert( 21 >> 2 ) // 21 / 4 = 5
+	alert( 21 >> 3 ) // 21 / 8 = 2
+	alert( 21 >> 4 ) // 21 / 16 = 1
+
+33. Break and Continue:
+	Jumping out with break
+		Sometimes it is required to break out of the loop right now. This is what break statement does.
+	Skipping with continue
+		The continue operator allows to skip the rest of the block.
+
+34. Alert Confirm and Prompt
+	alert("alert message box");
+	confirm("confirm box"), return true/false;
+	prompt("prompt box","default input"), return input string;
+	
+35. Metrics for invisible elements are zero.
+	JavaScript coordinates and sizes are set for attached and displayed elements only.
+	They equal 0 for elements with display:none or out of DOM. The offsetParent is also null for such elements.
+	We could use this to check if an elem is hidden:
+	
+	function isHidden(elem)
+	  return !elem.offsetWidth && !elem.offsetHeight
+	}
+	
+	Works even if parent element has display:none.
+	Works for all elements except TR, on which it bugs in some browsers. But usually we check other elements than TR, so it’s ok.
+	Doesn’t work if the element has visibility:hidden or is positioned off-screen. Empty elements will also be hidden.
+
+36. Why does this event handler use “e = e || event”?
+	To break it down, when an event handler is fired:
+		Some browsers pass a parameter to the callback holding event data (this is the standards-compliant way of doing it)
+		Other browsers (mostly old IE) instead put the event data in window.event.
+	Next, e = e || event; is a standard way of saying "if the parameter was not passed, default it to whatever's after the ||". In this case, if the event parameter is not passed, then it looks for the global variable.
+	e.returnValue is one of three ways to stop an event from causing its default action. The other two are e.preventDefault && e.preventDefault() (which is conspicuously absent from the code you posted), and return false;
+
+37. Class = "img-responsive"
+	The size of contained image will be responsive to fit its parent container;
+	
+38.Measure your setTimeout(.., 0) resolution
+	The following example demonstrates the average time until setTimeout(func, 0) executes.
+	Basically, it makes 1000 calls of setTimeout(.., 0), sums the time between them, then calculates the average.
+	
+	var i = 0, diff = 0, d = new Date()
+	var timer = setTimeout(function() {
+	  diff += new Date() - d
+	  timer = setTimeout(arguments.callee, 0)  //arguments.callee indicate the calling function(usually used when function name is unreachable)
+	  if (i++==1000) {
+		clearTimeout(timer)
+		alert("Resolution: "+diff/i)
+	  }
+	  d = new Date()
+	}, 0)
+
+39. Stacked events:
+	There are cases when multiple events are appended to the queue in a batch.
+	For example, mousedown followed by mouseup on the same screen location causes click event. The two events: mouseup and click events are appended to the queue at the same time.
+	The focus event may come stacked with mousedown.
+	
+	Delay triggering to let parent work:
+	The recipe is usually setTimeout(.., 0). On the example below, the click is first processed by document.body, then input:
+	
+	<input type="button" value='click'>
+	<script>
+	var input = document.getElementsByTagName('input')[0]
+
+	input.onclick = function() {
+	  setTimeout(function() { 
+		input.value +=' input'  
+	  }, 0)
+	}
+
+	document.body.onclick = function() {
+	  input.value += ' body'
+	}
+	</script>
+	
+40. Parse HTML Code to angular 
+	For Angular 1.x, use ng-bind-html in the HTML:
+	<div ng-bind-html="thisCanBeusedInsideNgBindHtml"></div>
+
+	At this point you would get a attempting to use an unsafe value in a safe context error so you need to either use ngSanitize or $sce to resolve that.
+
+	$sce
+		Use $sce.trustAsHtml() in the controller to convert the html string.
+		$scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml(someHtmlVar);
+		
+	ngSanitize
+		include the angular-sanitize.min.js resource, i.e.:
+			<script src="lib/angular/angular-sanitize.min.js"></script>
+		In a js file (controller or usually app.js), include ngSanitize, i.e.:
+			angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ngSanitize'])
+
+41. bootstrap: form-group-sm input-group-sm and help-block
+	form-group-lg/sm is used to control the size of its Horizontal Forms
+	help-block will generate block for comments in a new line.
+	
+42. SSH pscp remote file transfer
+	install puTTY and all the packages, put them into one folder;
+	add puTTY and the folder to system path;
+	open window cmd;
+	sample commandline: $pscp -scp -P [port] -l [user name] -pw [Password] -r [source path] [server name]:[destination]
+	
+43. UI-sortable:
+	It's the angular version of jQueryUI Sortable Event order; It generate dragable DOM element for sortable array.
+	
+44. Angular $httpProvider:
+	Use $httpProvider to change the default behavior of the $http service.
+	useApplyAsync([value]);
+		Configure $http service to combine processing of multiple http responses received at around the same time via $rootScope.$applyAsync. This can result in significant performance improvement for bigger applications that make many HTTP requests concurrently (common during application bootstrap).
+
+Defaults to false. If no value is specified, returns the current configured value.
+
+45. Delete in javaScript:
+	Delete is used to delete object properties, it will not delete variable;
+	var multiverse = {
+		earth1: "Silver Age",
+		earth2: "Golden Age"
+	};
+
+	delete multiverse.earth2;
+
+	console.log(multiverse);// Outputs: { earth1: "Silver Age" }
+	
+46. Void 0 :
+	The void operator evaluates the given expression and then returns undefined.
+	The void operator is often used merely to obtain the undefined primitive value, usually using “void(0)” (which is equivalent to “void 0”). In these cases, the global variable undefined can be used instead (assuming it has not been assigned to a non-default value).
+	
+47. Chrome http response with long stalled time:
+	1.This behavior is due to Chrome locking the cache and waiting to see the result of one request before requesting the same resource again. To fix this issue, append random string to each request in order to make it unique;
+	$http({
+		method:"GET",
+		url:"your_url?" + + (new Date).getTime(); //append current time to make each call unique;
+	}).then(//do something);
+	2. Chrome can handel 6 http request at the same time; For this situation, please rearrange http request or try to reduce its number;
+	app.config(function ($httpProvider) {
+		$httpProvider.useApplyAsync(true);
+	});
+	This will allows multiple $http request happended at the same pace(digst loop);
+	
+48. mkdir: make directory
+	-p: will also create all directories leading up to the given directory that do not exist already. If the given directory already exists, ignore the error.
+	-v: display each directory that mkdir creates. Most often used with -p.
+	-m: specify the octal permissions of directories created by mkdir.
+	example 1: mkdir -p /tmp/a/b/c
+	example 2: mkdir -p tmpdir/{trunk/sources/{includes,docs},branches,tags}
+				tmpdir
+		________|______
+	   |        |      |
+	branches   tags  trunk
+					   |
+					 sources
+				   ____|_____
+				  |          |
+			  includes     docs
+
+49. Download pdf in base64 format:
+	window.downloadPDF = function downloadPDF() {
+
+    var dlnk = document.getElementById('dwnldLnk');
+    dlnk.href = pdf;
+    dlnk.click();
+    alert('toma');
+}
+	
+	var pdf = "data:application/octet-stream;base64," + 'i0xLjUNCiW1tbW1DQoxIDAgb2JqDQo8PC9UeXBlL0NhdGFb2cvUGFnZXMgMiAwIFIvTGFu';
+	
+	Dowload pdf with link:
+		download attribute:
+			<a href="path_to_file" download="proposed_file_name">Download</a>
+			Where :
+			path_to_file is either an absolute or relative path,
+			proposed_file_name the filename to save to (can be blank, then defaults to the actual filename).
+			
+50. angular $http setting http header:
+	$httpProvider.defaults.headers.common (headers that are common for all requests):
+		<Accept: application/json, text/plain, *﻿/﻿*>
+	$httpProvider.defaults.headers.post: (header defaults for POST requests)
+		<Content-Type: application/json>
+	$httpProvider.defaults.headers.put (header defaults for PUT requests)
+		<Content-Type: application/json>
+
+

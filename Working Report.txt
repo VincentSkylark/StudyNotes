@@ -1,0 +1,71 @@
+80% of the time spent on a software project is invested in 20% of the functionality.
+
+
+If you are the strongest developer in your company, make the other developer's jobs easier. Do this by:
+	1.providing tools and libraries that make them more productive
+	2.implement a proper architecture that can be well maintained and extended - include the team on these decisions; they have to work with the design too
+	3.thoughtfully answer their questions
+	4.do constructive code reviews
+	5.have a solid testing system in place and insist on high coverage
+	6.provide a proper Agile environment and handle some of the administrative tasks so that the system does not get in their way
+	7.don't take all of the cool tasks for yourself
+	8.promote your team's accomplishments to the company, and get ahead of the mistakes
+
+If you are the weakest developer in your company, make the other developer's jobs easier. Do this by:
+	1.work harder than everyone else  - you generally want to work smarter, but if other devs are already doing that, you need to fill in some gaps
+	2.write documentation - in addition to the obvious need, it will help you learn the code base
+	3.pick up the tasks that nobody wants to do  - you will be showered with appreciation
+	4.ask good questions
+	5.learn what a good question is
+	6.have boiled-down, simple test cases ready to demonstrate your question - this process usually answers your own question
+	
+Experience:
+	1.Most of the time, using inheritance is a bad object oriented design in the long run. It reduces reusability and testability of code. Consider using interfaces instead. See No, inheritance is not the way to achieve code reuse!. Related;
+	2.Avoid introducing an interface until you are comfortable in your domain. "Premature interfacing" can also lead to design issues down the road.
+	3.Deep nested code (both intra-function and inter-function) is 1) harder to maintain and 2) more prone to bugs.
+	4.Estimating time is hard. One reason why Scrum and sprints are used in many places.
+	5.Proper encryption is hard. Don't invent it yourself unless you have a good reason to.
+	6.Side-effect free logic is nice. It makes it easier to reason about state (see below)
+	7.Learn to reason around state and lifecycles. See Jens Rantil's Hideout.
+	8.Concurrency can be hard without the right primitives. Queues, Observables, and actors can sometimes help a lot.
+	9.Premature optimization is the root of all evil. A good general development process is: 1) Get it to work. 2) Make the code beautiful. 3) Optimize.
+	10.Know your basic data structures and understand time complexity. It's an effective way of making your code much faster without adding complexity.
+	11.Practise back-of-the-envelope calculations. How many items will a piece of code generally hold in memory?
+	12.Write code as you want to read it. Add comments where you think you will not understand your code in a year's time. You will need the comment in a month. Somewhat related;
+	13.Setup your build tooling around a project so that it's easy to get started. Document the (few) commands needed to build, run, test and package in a README file.
+	14.Making sure your projects can build from command line makes things so much easier down the road.
+	15.Handling 3rd party dependencies in many languages can be a real mess (looking at you Java and Python). Specifically, when two different libraries depend on different versions. Some key things to take away from this: 1) Constantly question your dependencies. 2) Automated tests can help against this. 3) Always fixate which version of a 3rd party dependency you should use.
+	Popular Open Source projects are a great way to learn about good maintainable code and software development process.
+	Every single line you add to an application adds complexity and makes it more likely to have bugs. Removing code is a great way to remove bugs.
+	Code paths that handles failures are rarely tested/executed (for a reason). This makes them a good candidate for bugs.
+	Input validation is not just useful for security reasons. It helps you catch bugs early.
+	Somewhat related to above: State validation and output validation can be equally useful as input validation, both in terms of discovering inherent bugs, but also for security sensitive code.
+	Code reviews are a great way to improve as a programmer. You will get critique on your code, and you will learn to describe in words why someone else's code is good or bad. It also trains you to discover common mistakes.
+	Learning a new programming language is a great way to learn about new paradigms and question old habits.
+	Always specify encoding when converting text to and from bytes; be it when reading/writing to network, file, or for encryption purposes. If you rely on your locale's character set, you are bound to run into data corruption eventually. Use a UTF character set if you can get to choose yourself.
+	Know your tools; That includes your editor, the terminal, version control system (such as git) and build tooling.
+	Learn to use your tools without a mouse. Learn as many keyboard shortcuts as possible. It will make you more efficient and is generally more ergonomic.
+	Reusing code is not an end goal and will not make your code more maintainable per se. Reuse complicated code and be aware that reusing code between two different domains might make them depend on each other more than necessary.
+	Sitting for long time by the computer can break your body. 1) Listen to what your body has to say. Think extra about your back, neck, and wrists. Take breaks if your body starts to hurt. Creating a pause habit (making tea, grabing coffee) can surprisingly be good for your body and mind. 2) Rest your eyes from time to time by looking away from your screen. 3) Get a good keyboard without awkward wrist movements.
+	Automated testing, and in particular unit tests, are not just testing that your code does what it should. They also 1) document how the code is supposed to be used and 2) also helps you put yourself in the shoes of someone who will be using the code. The latter is why some claim test-first approach to development can yield cleaner APIs.
+	Race conditions are surprisingly more common than one generally thinks. This is because a computer generally has more TPS than we are used to.
+	Understanding the relationship between throughout and latency (http://en.m.wikipedia.org/wiki/L...) can be very useful when your systems are being optimized. Related;
+	Many times high throughput can be achieved by introducing smart batching.
+	
+	list:
+	OS:linux ubuntu
+	pdf: okular
+	office: LibreOffice
+	browser: Chrome
+	Ide: Eclipse, brackets
+	Note: Notepad++
+	Programming: JAVA 8
+	remote:VNC Viewer
+	package:Node, nginx, mongoDB, Robomongo
+	
+	
+Road to engineering:
+algorithm
+database
+operation system
+mathmatic

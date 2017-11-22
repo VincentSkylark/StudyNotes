@@ -1,0 +1,176 @@
+Getting Started
+1. Installing the CLI
+	"npm install -g grunt-cli"
+	This will put the grunt command in your system path, allowing it to be run from any directory.(Note that installing grunt-cli does not install the Grunt task runner!)
+
+2. Configuring task
+	Task configuration is specified in your Gruntfile via the grunt.initConfig method.
+grunt.initConfig({
+  concat: {
+    // concat task configuration goes here.
+  },
+  uglify: {
+    // uglify task configuration goes here.
+  },
+  // Arbitrary non-task-specific properties.
+  my_property: 'whatever',
+  my_src_files: ['foo/*.js', 'bar/*.js'],
+});
+
+3. Sample Grunt File
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+    jshint: {
+      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      options: {
+        globals: {
+          jQuery: true
+        }
+      }
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['jshint']
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+};
+grunt.registerTask('default', ['jshint']);
+
+4. Linting JavaScript Files
+// Gruntfile.js
+
+grunt.initConfig({
+
+    ...
+
+    // configure jshint to validate js files -----------------------------------
+    jshint: {
+      options: {
+        reporter: require('jshint-stylish') // use jshint-stylish to make our errors look and read good
+      },
+
+      // when this task is run, lint the Gruntfile and all js files in src
+      build: ['Grunfile.js', 'src/**/*.js']
+    }
+
+});
+then: $ grunt jshint
+
+5.1 Minifying JavaScript Files
+// Gruntfile.js
+grunt.initConfig({
+
+    // get the configuration info from package.json ----------------------------
+    // this way we can use things like name and version (pkg.name)
+    pkg: grunt.file.readJSON('package.json'),
+
+    ...
+
+    // configure uglify to minify js files -------------------------------------
+    uglify: {
+      options: {
+        banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+      },
+      build: {
+        files: {
+          'dist/js/magic.min.js': 'src/js/magic.js'
+        }
+      }
+    }
+
+});
+then: $ grunt uglify
+
+5.2 MINIFYING MULTIPLE FILES INTO ONE
+// Gruntfile.js
+grunt.initConfig({
+
+    // get the configuration info from package.json ----------------------------
+    // this way we can use things like name and version (pkg.name)
+    pkg: grunt.file.readJSON('package.json'),
+
+    ...
+
+    // configure uglify to minify js files -------------------------------------
+    uglify: {
+      options: {
+        banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+      },
+      build: {
+        files: {
+          'dist/js/magic.min.js': ['src/js/magic.js', 'src/js/magic2.js']
+        }
+      }
+    }
+
+});
+
+6. Compiling LESS to CSS
+// Gruntfile.js
+grunt.initConfig({
+
+    ...
+
+    // compile less stylesheets to css -----------------------------------------
+    less: {
+      build: {
+        files: {
+          'dist/css/pretty.css': 'src/css/pretty.less'
+        }
+      }
+    }
+
+});
+$ grunt less
+
+7. watch: {
+  
+  // for stylesheets, watch css and less files
+  
+  // only run less and cssmin
+  
+    stylesheets: {
+      files: ['src//*.css', 'src//*.less'],
+          tasks: ['less', 'cssmin']
+    },
+  // for scripts, run jshint and uglify
+    scripts: {
+      files: 'src/**/*.js',
+          tasks: ['jshint', 'uglify']
+    }
+  }
+  
+  
+ 8. Jasmine
+ grunt-contrib-jasmine guidline:
+	(1) install jasmine plug-in: npm install grunt-contrib-jasmine --save-dev
+	(2) enable inside the Gruntfuile with this line of javascript: grunt.loadNpmTasks('grunt-contrib-jasmine');
+	(3) create Gruntfile.js
+	module.exports = function(grunt) {
+       'use strict';
+       // Project configuration.
+       grunt.initConfig({
+               jasmine : {
+                       src : 'src/**/*.js',
+                       options : {
+                               specs : 'specs/**/*.js'
+                       }
+               }
+       });
+       grunt.loadNpmTasks('grunt-contrib-jasmine');
+	};
+	(4) Add a Spec
+	Create a Jasmine spec, specs/Crisper-spec.js looking like this
+	describe("Crisper", function() {
+		it("should be a constructor function", function() {
+			expect(typeof window.Crisper).toBe("function");
+		});
+	});
+	(5) Run the Spec
+	$ grunt jasmine
+	
+9. 

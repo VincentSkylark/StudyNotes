@@ -1,0 +1,10 @@
+Extend method;
+Generic type;
+Reposery pattern;
+dedicate pattern;
+enum;
+
+dapper & dapperSimpleCRUD
+reflection
+
+C# package management system: Nuget

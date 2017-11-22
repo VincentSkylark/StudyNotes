@@ -1,0 +1,19 @@
+
+Skip List:
+	a skip list is a data structure that allows fast search within an ordered sequence of elements. Fast search is made possible by maintaining a linked hierarchy of subsequences, with each successive subsequence skipping over fewer elements than the previous one.
+
+Hash Table
+
+Binary Search Tree:
+
+Cartesian Tree:
+
+B-Tree:
+
+Red-Black Tree:
+
+Splay Tree:
+
+AVL Tree:
+
+KD Tree:

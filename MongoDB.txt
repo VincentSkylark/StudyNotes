@@ -1,0 +1,225 @@
+MongoDB:
+
+check windows version:
+$wmic os get osarchitecture
+-32GB MongoDB only support databases smaller than 2GB and suitable only for testing and evaluation purpose.
+
+Default directory for data is c:\data\db
+
+Linux:
+1.May need to import the public key for package management system
+2.Create a list file for MongoDB
+3.Reload local package database
+	$sudo apt-get update
+4.Install MongoDB:
+	$sudo apt-get install -y mongodb-org
+5.Start MongoDB:
+	$sudo service mongod start
+6.Verify that MongoDB has started:
+	log location: /var/lpg/mongodb/mongod.log
+	[initandlisten] waiting for connections on port <port>
+7.Stop/Restart MongoDB
+	$sudo service mongod stop/restart
+
+	
+Consideration while designing schema:
+1.Combine objects into one document if they are going to be used together, otherwise separate them.
+2.Duplicate the data, because disk space is cheap as compare to compute time.
+3.Do joins while write, not on read.
+4.Design for the most frequent use cases.
+5.Do complex aggregation(complex queries involving multiple dependent aggregates) in the schema.
+
+Example:
+{
+   _id: POST_ID
+   title: TITLE_OF_POST, 
+   description: POST_DESCRIPTION,
+   by: POST_BY,
+   url: URL_OF_POST,
+   tags: [TAG1, TAG2, TAG3],
+   likes: TOTAL_LIKES, 
+   comments: [	
+      {
+         user:'COMMENT_BY',
+         message: TEXT,
+         dateCreated: DATE_TIME,
+         like: LIKES 
+      },
+      {
+         user:'COMMENT_BY',
+         message: TEXT,
+         dateCreated: DATE_TIME,
+         like: LIKES
+      }
+   ]
+}
+
+Create Database:
+1."use" command will switch to the database. If it doesn't exist, it will create a new one.
+>use DATABASE_NAME
+2.check your currently selected database, use command db.
+>db
+3.to check database list, use commadn "show dbs"
+>show dbs
+
+Drop Database:
+1.basic sytax "db.dropDatabase()"
+>use mydb
+>db.dropDatabase()
+>{ "dropped" : "mydb", "ok" : 1 }
+
+Copy/ Backup Database
+mongodump utility backs up data by connecting to a running mongod or mongos instance
+>mongodump --host mongodb.example.net --port 27017 --username user --password password --out /data/backup --collection myCollection --db test
+
+Mongoose -CRUD:
+1)Init:
+var mongoose = require('mongoose');
+mongoose.connect('mongodb URI');
+var TodoSchema = new mongoose.Schema({
+	name: String,
+	completed: Boolean,
+	note: String,
+	updated_at:{type: Date, default: Date.now}
+});
+var todo = mongoose.model('Todo', TodoSchema);
+
+2)Create:
+//create a todo in memory
+var todo = new Todo({name:'name', completed: false, note:'note'});
+//save it to database
+todo.save(function(err){
+	if(err) console.log(err);
+	else console.log(todo);
+});
+
+3)Read and Query:
+Mongo query:
+Model.find(conditions, [fields], [options], [callback])
+Model.findById(id, [fields], [options], [callback])
+Model.findOne(conditions, [fields], [options], [callback])
+
+Todo.find(function(err, todos){
+	if(err) return console.error(err);
+	console.log(todos);
+})
+
+//callback function to avoid duplicating
+var callback = function (err, data){
+	if (err) {return console.error(err)};
+	else {console.log(data);}
+}
+
+// Get ONLY completed tasks
+Todo.find({completed: true}, callback);
+
+// Get all tasks ending with 'JS'
+Todo.find({name: /JS$/}, callback);
+
+var oneYearAgo = new Date();
+oneYearAgo.setYear(oneYearAgo.getFullYear() - 1);
+// Get all tasks staring with `Master`, completed
+Todo.find({name: /^Master/, completed: true }, callback);
+// Get all tasks staring with `Master`, not completed and created from year ago to now...
+Todo.find({name: /^Master/, completed: false }).where('updated_at').gt(oneYearAgo).exec(callback);
+
+4)Update:
+Model.update(conditions, update, [options], [callback])
+Model.findByIdAndUpdate(id, [update], [options], [callback])
+Model.findOneAndUpdate([conditions], [update], [options], [callback])
+
+// update `multi`ple tasks from complete false to true
+Todo.update({ name: /master/i }, { completed: true }, { multi: true }, callback);
+
+This will reutn the number of fields that were modified:
+{ ok: 1, nModified: 1, n: 1 }
+n -- the number of records that matches the query
+nModified -- the number of documents that were modified with update query
+
+Todo.findOneAndUpdate({name: /JS$/ }, {completed: false}, callback);
+
+5)Delete
+Model.remove(conditions, [callback])
+Model.findByIdAndRemove(id, [options], [callback])
+Model.findOneAndRemove(conditions, [options], [callback])
+
+Common CLI commands:
+show dbs //list all database
+use <db> //switch to database
+show collections //list all collection
+show users //list all users
+show roles //list all roles
+load() //execute a JavaScript file
+
+Role List:
+dbAdmin, dbOwner, enableSharding, read, readWrite, userAdmin
+
+setup users:
+use admin
+db.createUser(
+  {
+    user: "myUserAdmin",
+    pwd: "abc123",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+Dump and Restor Database
+1)Dump with mongodump
+mongodump --username dbAdmin --password password --host localhost:27017 --db testdb --collection testcollection --out database/backupdb
+2)Restore with mongorestore
+mongorestore --username username --password password --host server.com --port 2048 database/backupdb
+
+Improve Query Performance
+1)Create indexes:
+create index for frequent query, and MongoDB can read indexes in both ascending and descending order;
+	db.posts.createIndex({timestamp: 1});
+2)Limit the Number of Query Results to Reduce Network Demand
+	db.posts.find().sort({timestamp: -1}).limit(10);
+3)Use Projections to Return Only Necessary Data:
+Achieve better performance by returnning only the fields you need:
+	db.posts.find({},{timestamp:1,title:1,authorL:1,abstract:1}).sort( { timestamp : -1 } );
+4)Use $hint to Select a Particular Index
+Specify an Index
+	db.users.find().hint( { age: 1 } )
+Force Collection Scans
+	db.users.find().hint({$natural:-1})
+
+Query:
+I) REGULAR DOCUMENTS
+1)Specify Conditions Using Query Operators
+var cursor = db.collection('inventory').find({status:{$in:["A", "D"]});
+2)Specify AND Conditions
+var cursor = db.collection('inventory').find({
+	status: 'A',
+	qty:{$lt:30} //less than
+})
+3)specify OR Conditions
+var cursor = db.collection('inventory').find({
+	$or:[{status:'A'},{qty:{$lt:30}},{item:{$regex:'^p'}}]
+})
+
+II) NESTED DOCUMENTS
+var cursor = db.collection('inventory').find({
+	'size.uom':'in',
+	'size.h':{$lt:15}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

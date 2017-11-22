@@ -1,0 +1,41 @@
+Prepare On line:
+Digital Ocean: DOCS10 Promotion
+Task1: Secure Linux
+1.set up auto update
+sudo apt-get update
+sudo apt install unattended-upgrades
+edit /etc/apt/apt.conf.d/50unattended-upgrades
+Unattended-Upgrade::Allowed-Origins {
+        "Ubuntu xenial-security";
+//      "Ubuntu xenial-updates";
+};
+Unattended-Upgrade::Package-Blacklist {
+//      "vim";
+//      "libc6";
+//      "libc6-dev";
+//      "libc6-i686";
+};
+To enable automatic updates, edit /etc/apt/apt.conf.d/10periodic and set the appropriate apt configuration options:
+
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+
+2.install package
+nginx:
+	sudo apt-get update
+	sudo apt-get install nginx
+	Configuration:
+		/etc/nginx/nginx.config
+node:
+	curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+	sudo apt-get install -y nodejs
+express:
+	
+mongodb:
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+	echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+	sudo service mongod start

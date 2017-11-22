@@ -1,0 +1,4905 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0"
+  },
+  "basePath": "/1.0",
+  "paths": {
+    "/brands": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "brand",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BrandInformation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/brands/{id}": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedBrandInformation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/brands/{brandid}/brandlogo": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsByBrandidBrandlogoGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "brandid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsByBrandidBrandlogoPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "brandid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "brandLogo",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BrandLogo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/brands/{brandid}/brandlogo/{brandLogoId}": {
+      "put": {
+        "tags": [
+          "Brands"
+        ],
+        "operationId": "BrandsByBrandidBrandlogoByBrandLogoIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "brandid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "brandLogoId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedBrandLogo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commodityCode": {
+      "post": {
+        "tags": [
+          "CommodityCode"
+        ],
+        "operationId": "CommodityCodePost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CommodityCode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commodityCode/{id}": {
+      "put": {
+        "tags": [
+          "CommodityCode"
+        ],
+        "operationId": "CommodityCodeByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedCommodityCode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commodityCodes": {
+      "get": {
+        "tags": [
+          "CommodityCode"
+        ],
+        "operationId": "CommodityCodesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/commodityCodes/{id}": {
+      "get": {
+        "tags": [
+          "CommodityCode"
+        ],
+        "operationId": "CommodityCodesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/containerMaterialType": {
+      "get": {
+        "tags": [
+          "ContainerMaterialType"
+        ],
+        "operationId": "ContainerMaterialTypeGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ContainerMaterialType"
+        ],
+        "operationId": "ContainerMaterialTypePost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "containerMaterial",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ContainerMaterialType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/containerMaterialType/{id}": {
+      "get": {
+        "tags": [
+          "ContainerMaterialType"
+        ],
+        "operationId": "ContainerMaterialTypeByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ContainerMaterialType"
+        ],
+        "operationId": "ContainerMaterialTypeByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedContainerMaterialType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/deliveryFormats": {
+      "get": {
+        "tags": [
+          "DeliveryFormats"
+        ],
+        "operationId": "DeliveryFormatsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DeliveryFormats"
+        ],
+        "operationId": "DeliveryFormatsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "deliveryFormat",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DeliveryFormat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/deliveryFormats/{id}": {
+      "get": {
+        "tags": [
+          "DeliveryFormats"
+        ],
+        "operationId": "DeliveryFormatsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DeliveryFormats"
+        ],
+        "operationId": "DeliveryFormatsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedDeliveryFormat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/dietaryConsiderations": {
+      "get": {
+        "tags": [
+          "DietaryConsideration"
+        ],
+        "operationId": "DietaryConsiderationsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DietaryConsideration"
+        ],
+        "operationId": "DietaryConsiderationsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "dietaryConsideration",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DietaryConsideration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/dietaryConsiderations/{id}": {
+      "get": {
+        "tags": [
+          "DietaryConsideration"
+        ],
+        "operationId": "DietaryConsiderationsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DietaryConsideration"
+        ],
+        "operationId": "DietaryConsiderationsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedDietaryConsideration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/dietaryConsiderationTypes": {
+      "get": {
+        "tags": [
+          "DietaryConsiderationType"
+        ],
+        "operationId": "DietaryConsiderationTypesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DietaryConsiderationType"
+        ],
+        "operationId": "DietaryConsiderationTypesPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "dietaryConsiderationType",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DietaryConsiderationType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/dietaryConsiderationTypes/{id}": {
+      "get": {
+        "tags": [
+          "DietaryConsiderationType"
+        ],
+        "operationId": "DietaryConsiderationTypesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DietaryConsiderationType"
+        ],
+        "operationId": "DietaryConsiderationTypesByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedDietaryConsiderationType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ImportBuyers": {
+      "post": {
+        "tags": [
+          "EmersonImport"
+        ],
+        "operationId": "ImportBuyersPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "buyers",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedMas500Buyer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/ImportMas500ItemClass": {
+      "post": {
+        "tags": [
+          "EmersonImport"
+        ],
+        "operationId": "ImportMas500ItemClassPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "mas500ItemClass",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedMas500ItemClass"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/ImportMas500SalesProductLine": {
+      "post": {
+        "tags": [
+          "EmersonImport"
+        ],
+        "operationId": "ImportMas500SalesProductLinePost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "mas500ProductLine",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedMas500SalesProductLine"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/ImportMas500PurchaseProductLine": {
+      "post": {
+        "tags": [
+          "EmersonImport"
+        ],
+        "operationId": "ImportMas500PurchaseProductLinePost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "mas500ProductLine",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedMas500PurchaseProductLine"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/industryCategories": {
+      "get": {
+        "tags": [
+          "IndustryCategories"
+        ],
+        "operationId": "IndustryCategoriesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "IndustryCategories"
+        ],
+        "operationId": "IndustryCategoriesPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "industryCategory",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedIndustryCategory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/industryCategories/{id}": {
+      "get": {
+        "tags": [
+          "IndustryCategories"
+        ],
+        "operationId": "IndustryCategoriesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "IndustryCategories"
+        ],
+        "operationId": "IndustryCategoriesByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedIndustryCategory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ingredients": {
+      "get": {
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "IngredientsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "IngredientsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "ingredient",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/IngredientViewModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ingredients/{id}": {
+      "get": {
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "IngredientsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "IngredientsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/IngredientViewModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "item",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Item"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{id}": {
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/pricing": {
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsByItemIdPricingGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsByItemIdPricingPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "itemPricing",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ItemPricing"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/pricing/{itemPricingId}": {
+      "put": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "ItemsByItemIdPricingByItemPricingIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "itemPricingId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedItemPricing"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/images": {
+      "get": {
+        "tags": [
+          "ItemImage"
+        ],
+        "operationId": "ItemsByItemIdImagesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedItemImage"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ItemImage"
+        ],
+        "operationId": "ItemsByItemIdImagesPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "itemImage",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ItemImage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/images/{imageId}": {
+      "get": {
+        "tags": [
+          "ItemImage"
+        ],
+        "operationId": "ItemsByItemIdImagesByImageIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PersistedItemImage"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ItemImage"
+        ],
+        "operationId": "ItemsByItemIdImagesByImageIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedItemImage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/labels": {
+      "get": {
+        "tags": [
+          "ItemLabel"
+        ],
+        "operationId": "ItemsByItemIdLabelsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PersistedItemLabelPdf"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ItemLabel"
+        ],
+        "operationId": "ItemsByItemIdLabelsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "itemLabelPdf",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ItemLabelPdf"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/items/{itemId}/labels/{labelId}": {
+      "get": {
+        "tags": [
+          "ItemLabel"
+        ],
+        "operationId": "ItemsByItemIdLabelsByLabelIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "labelId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PersistedItemLabelPdf"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ItemLabel"
+        ],
+        "operationId": "ItemsByItemIdLabelsByLabelIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "labelId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedItemLabelPdf"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/manufacturers": {
+      "get": {
+        "tags": [
+          "Manufacturers"
+        ],
+        "operationId": "ManufacturersGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Manufacturers"
+        ],
+        "operationId": "ManufacturersPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Manufacturer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/manufacturers/{id}": {
+      "get": {
+        "tags": [
+          "Manufacturers"
+        ],
+        "operationId": "ManufacturersByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Manufacturers"
+        ],
+        "operationId": "ManufacturersByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedManufacturer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/buyers": {
+      "get": {
+        "tags": [
+          "Mas500Buyer"
+        ],
+        "operationId": "BuyersGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/buyers/{id}": {
+      "get": {
+        "tags": [
+          "Mas500Buyer"
+        ],
+        "operationId": "BuyersByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/itemclasses": {
+      "get": {
+        "tags": [
+          "Mas500ItemClass"
+        ],
+        "operationId": "ItemclassesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetPageResult[PersistedMas500ItemClass]"
+            }
+          }
+        }
+      }
+    },
+    "/itemclasses/{id}": {
+      "get": {
+        "tags": [
+          "Mas500ItemClass"
+        ],
+        "operationId": "ItemclassesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PersistedMas500ItemClass"
+            }
+          }
+        }
+      }
+    },
+    "/productLines/purchase": {
+      "get": {
+        "tags": [
+          "Mas500ProductLine"
+        ],
+        "operationId": "ProductLinesPurchaseGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetPageResult[PersistedMas500PurchaseProductLine]"
+            }
+          }
+        }
+      }
+    },
+    "/productLines/sales": {
+      "get": {
+        "tags": [
+          "Mas500ProductLine"
+        ],
+        "operationId": "ProductLinesSalesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetPageResult[PersistedMas500SalesProductLine]"
+            }
+          }
+        }
+      }
+    },
+    "/productLines/purchase/{id}": {
+      "get": {
+        "tags": [
+          "Mas500ProductLine"
+        ],
+        "operationId": "ProductLinesPurchaseByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PersistedMas500PurchaseProductLine"
+            }
+          }
+        }
+      }
+    },
+    "/productLines/sales/{id}": {
+      "get": {
+        "tags": [
+          "Mas500ProductLine"
+        ],
+        "operationId": "ProductLinesSalesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PersistedMas500SalesProductLine"
+            }
+          }
+        }
+      }
+    },
+    "/productmanagers": {
+      "get": {
+        "tags": [
+          "Mas500ProductManager"
+        ],
+        "operationId": "ProductmanagersGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/productmanagers/{id}": {
+      "get": {
+        "tags": [
+          "Mas500ProductManager"
+        ],
+        "operationId": "ProductmanagersByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NonStockingProduct": {
+      "get": {
+        "tags": [
+          "NonStockingProduct"
+        ],
+        "operationId": "NonStockingProductGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "NonStockingProduct"
+        ],
+        "operationId": "NonStockingProductPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "nonStockingProduct",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedNonStockingProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NonStockingProduct"
+        ],
+        "operationId": "NonStockingProductPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "nonStockingProduct",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedNonStockingProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/NonStockingProduct/{id}": {
+      "get": {
+        "tags": [
+          "NonStockingProduct"
+        ],
+        "operationId": "NonStockingProductByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/products/{id}/NonStockingProduct": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsByIdNonStockingProductGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "operationId": "ProductsByIdNonStockingProductPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "nonStockingProductIds",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomies": {
+      "get": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "taxonomy",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Taxonomy"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomies/{id}": {
+      "get": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedTaxonomy"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomies/{id}/children": {
+      "get": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesByIdChildrenGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomies/{id}/parents": {
+      "get": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesByIdParentsGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomies/{id}/parents/{parentId}": {
+      "put": {
+        "tags": [
+          "Taxonomy"
+        ],
+        "operationId": "TaxonomiesByIdParentsByParentIdPut",
+        "consumes": [
+          
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "parentId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "enum": [
+                100,
+                101,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                300,
+                300,
+                301,
+                301,
+                302,
+                302,
+                303,
+                303,
+                304,
+                305,
+                306,
+                307,
+                307,
+                400,
+                401,
+                402,
+                403,
+                404,
+                405,
+                406,
+                407,
+                408,
+                409,
+                410,
+                411,
+                412,
+                413,
+                414,
+                415,
+                416,
+                417,
+                426,
+                500,
+                501,
+                502,
+                503,
+                504,
+                505
+              ],
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/taxonomyTypes": {
+      "get": {
+        "tags": [
+          "TaxonomyType"
+        ],
+        "operationId": "TaxonomyTypesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TaxonomyType"
+        ],
+        "operationId": "TaxonomyTypesPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "taxonomyType",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TaxonomyType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomyTypes/{id}": {
+      "get": {
+        "tags": [
+          "TaxonomyType"
+        ],
+        "operationId": "TaxonomyTypesByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TaxonomyType"
+        ],
+        "operationId": "TaxonomyTypesByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedTaxonomyType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/taxonomyTypes/{id}/taxonomies": {
+      "get": {
+        "tags": [
+          "TaxonomyType"
+        ],
+        "operationId": "TaxonomyTypesByIdTaxonomiesGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/unitOfMeasures": {
+      "get": {
+        "tags": [
+          "UnitOfMeasure"
+        ],
+        "operationId": "UnitOfMeasuresGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UnitOfMeasure"
+        ],
+        "operationId": "UnitOfMeasuresPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "unitOfMeasure",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UnitOfMeasure"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/unitOfMeasures/{id}": {
+      "get": {
+        "tags": [
+          "UnitOfMeasure"
+        ],
+        "operationId": "UnitOfMeasuresByIdGet",
+        "consumes": [
+          
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UnitOfMeasure"
+        ],
+        "operationId": "UnitOfMeasuresByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PersistedUnitOfMeasure"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BrandInformation": {
+      "required": [
+        "brand",
+        "brandCode"
+      ],
+      "type": "object",
+      "properties": {
+        "brand": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "brandCode": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "buyerKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "eqpLevel": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "manufacturerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sageVendKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "brandBio": {
+          "type": "string"
+        },
+        "brandLogo": {
+          "format": "byte",
+          "type": "string"
+        }
+      }
+    },
+    "PersistedBrandInformation": {
+      "required": [
+        "brand",
+        "brandCode"
+      ],
+      "type": "object",
+      "properties": {
+        "brandId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "brand": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "brandCode": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "buyerKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "eqpLevel": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "manufacturerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sageVendKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "brandBio": {
+          "type": "string"
+        },
+        "brandLogo": {
+          "format": "byte",
+          "type": "string"
+        }
+      }
+    },
+    "BrandLogo": {
+      "required": [
+        "logo",
+        "brandId"
+      ],
+      "type": "object",
+      "properties": {
+        "logo": {
+          "format": "byte",
+          "type": "string"
+        },
+        "brandId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedBrandLogo": {
+      "required": [
+        "logo",
+        "brandId"
+      ],
+      "type": "object",
+      "properties": {
+        "brandLogoId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "logo": {
+          "format": "byte",
+          "type": "string"
+        },
+        "brandId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CommodityCode": {
+      "required": [
+        "commodityCodeId"
+      ],
+      "type": "object",
+      "properties": {
+        "commodityCodeId": {
+          "maxLength": 15,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 30,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedCommodityCode": {
+      "required": [
+        "commodityCodeId"
+      ],
+      "type": "object",
+      "properties": {
+        "commodityCodeKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "commodityCodeId": {
+          "maxLength": 15,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 30,
+          "type": "string"
+        }
+      }
+    },
+    "ContainerMaterialType": {
+      "required": [
+        "material"
+      ],
+      "type": "object",
+      "properties": {
+        "material": {
+          "maxLength": 64,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedContainerMaterialType": {
+      "required": [
+        "material"
+      ],
+      "type": "object",
+      "properties": {
+        "containerMaterialTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "material": {
+          "maxLength": 64,
+          "type": "string"
+        }
+      }
+    },
+    "DeliveryFormat": {
+      "required": [
+        "abbreviation",
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "abbreviation": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedDeliveryFormat": {
+      "required": [
+        "abbreviation",
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "deliveryFormatId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "abbreviation": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string"
+        }
+      }
+    },
+    "DietaryConsideration": {
+      "required": [
+        "consideration",
+        "dietaryConsiderationTypeId"
+      ],
+      "type": "object",
+      "properties": {
+        "consideration": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "dietaryConsiderationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedDietaryConsideration": {
+      "required": [
+        "consideration",
+        "dietaryConsiderationTypeId"
+      ],
+      "type": "object",
+      "properties": {
+        "dietaryConsiderationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "consideration": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "dietaryConsiderationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DietaryConsiderationType": {
+      "required": [
+        "type",
+        "displayOrder"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "displayOrder": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedDietaryConsiderationType": {
+      "required": [
+        "type",
+        "displayOrder"
+      ],
+      "type": "object",
+      "properties": {
+        "dietaryConsiderationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "displayOrder": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedMas500Buyer": {
+      "required": [
+        "buyerKey"
+      ],
+      "type": "object",
+      "properties": {
+        "buyerKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "buyerId": {
+          "maxLength": 128,
+          "type": "string"
+        },
+        "buyerName": {
+          "maxLength": 128,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedMas500ItemClass": {
+      "required": [
+        "itemClassKey",
+        "itemClassId",
+        "itemClassName"
+      ],
+      "type": "object",
+      "properties": {
+        "itemClassKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemClassId": {
+          "maxLength": 12,
+          "type": "string"
+        },
+        "itemClassName": {
+          "maxLength": 40,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedMas500SalesProductLine": {
+      "required": [
+        "salesProductLineKey",
+        "salesProductLineId"
+      ],
+      "type": "object",
+      "properties": {
+        "salesProductLineKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "salesProductLineId": {
+          "maxLength": 20,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedMas500PurchaseProductLine": {
+      "required": [
+        "purchaseProductLineKey",
+        "purchaseProductLineId"
+      ],
+      "type": "object",
+      "properties": {
+        "purchaseProductLineKey": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseProductLineId": {
+          "maxLength": 20,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedIndustryCategory": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "industryCategoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 32,
+          "type": "string"
+        }
+      }
+    },
+    "IngredientViewModel": {
+      "type": "object",
+      "properties": {
+        "ingredientId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "Item": {
+      "required": [
+        "productId",
+        "itemCode",
+        "itemName",
+        "containerCount",
+        "dateEstablished",
+        "status",
+        "vendorItemId",
+        "sage500",
+        "ingredients",
+        "dietaryConsiderations",
+        "prop65AlternativeItems",
+        "vendorPurchaseUnitOfMeasures"
+      ],
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "itemCode": {
+          "maxLength": 20,
+          "type": "string"
+        },
+        "itemName": {
+          "maxLength": 40,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2048,
+          "type": "string"
+        },
+        "containerCount": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "containerMaterialTypeId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "dateEstablished": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "deliveryFormatId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "discontinuedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dosageAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "dosageUnitOfMeasureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prop65Restriction": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "labelText": {
+          "maxLength": 2048,
+          "type": "string"
+        },
+        "labTestKitMaxQuantityAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "marketingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "minimumSaleQuantity": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "packageHeight": {
+          "format": "double",
+          "type": "number"
+        },
+        "packageLength": {
+          "format": "double",
+          "type": "number"
+        },
+        "packageWidth": {
+          "format": "double",
+          "type": "number"
+        },
+        "status": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "type": "integer"
+        },
+        "unitWeight": {
+          "format": "double",
+          "type": "number"
+        },
+        "upc": {
+          "maxLength": 15,
+          "type": "string"
+        },
+        "vendorItemId": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "dateModified": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "webVisibilityStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "webVisibilityEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "sage500": {
+          "$ref": "#/definitions/ItemMas500Specific"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedItemIngredientAmount"
+          }
+        },
+        "dietaryConsiderations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemXDietaryConsideration"
+          }
+        },
+        "prop65AlternativeItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Prop65AlternativeItem"
+          }
+        },
+        "vendorPurchaseUnitOfMeasures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPurchaseUnitOfMeasure"
+          }
+        }
+      }
+    },
+    "ItemMas500Specific": {
+      "required": [
+        "quantityPerCase",
+        "vendorPurchaseUnitOfMeasureId"
+      ],
+      "type": "object",
+      "properties": {
+        "quantityPerCase": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vendorPurchaseUnitOfMeasureId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedItemIngredientAmount": {
+      "required": [
+        "itemId",
+        "ingredientId",
+        "isActive",
+        "amount",
+        "unitOfMeasureId",
+        "sortOrder"
+      ],
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ingredientId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "unitOfMeasureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sortOrder": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedItemIngredientAmount"
+          }
+        },
+        "percentageDailyValue": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "ItemXDietaryConsideration": {
+      "required": [
+        "dietaryConsiderationId"
+      ],
+      "type": "object",
+      "properties": {
+        "dietaryConsiderationId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Prop65AlternativeItem": {
+      "required": [
+        "alternativeItemId"
+      ],
+      "type": "object",
+      "properties": {
+        "alternativeItemId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ItemPurchaseUnitOfMeasure": {
+      "required": [
+        "unitOfMeasureId"
+      ],
+      "type": "object",
+      "properties": {
+        "unitOfMeasureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "weight": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "PersistedItem": {
+      "required": [
+        "productId",
+        "itemCode",
+        "itemName",
+        "containerCount",
+        "dateEstablished",
+        "status",
+        "vendorItemId",
+        "sage500",
+        "ingredients",
+        "dietaryConsiderations",
+        "prop65AlternativeItems",
+        "vendorPurchaseUnitOfMeasures"
+      ],
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "itemCode": {
+          "maxLength": 20,
+          "type": "string"
+        },
+        "itemName": {
+          "maxLength": 40,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2048,
+          "type": "string"
+        },
+        "containerCount": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "containerMaterialTypeId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "dateEstablished": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "deliveryFormatId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "discontinuedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dosageAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "dosageUnitOfMeasureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prop65Restriction": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "labelText": {
+          "maxLength": 2048,
+          "type": "string"
+        },
+        "labTestKitMaxQuantityAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "marketingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "minimumSaleQuantity": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "packageHeight": {
+          "format": "double",
+          "type": "number"
+        },
+        "packageLength": {
+          "format": "double",
+          "type": "number"
+        },
+        "packageWidth": {
+          "format": "double",
+          "type": "number"
+        },
+        "status": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "type": "integer"
+        },
+        "unitWeight": {
+          "format": "double",
+          "type": "number"
+        },
+        "upc": {
+          "maxLength": 15,
+          "type": "string"
+        },
+        "vendorItemId": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "dateModified": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "webVisibilityStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "webVisibilityEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "sage500": {
+          "$ref": "#/definitions/ItemMas500Specific"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedItemIngredientAmount"
+          }
+        },
+        "dietaryConsiderations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemXDietaryConsideration"
+          }
+        },
+        "prop65AlternativeItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Prop65AlternativeItem"
+          }
+        },
+        "vendorPurchaseUnitOfMeasures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPurchaseUnitOfMeasure"
+          }
+        }
+      }
+    },
+    "ItemPricing": {
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "effectiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dispensaryPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "emersonCost": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "replacementPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "retailPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "wholesalePrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        }
+      }
+    },
+    "PersistedItemPricing": {
+      "type": "object",
+      "properties": {
+        "itemPricingId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "itemId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "effectiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dispensaryPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "emersonCost": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "replacementPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "retailPrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        },
+        "wholesalePrice": {
+          "format": "double",
+          "minimum": 0,
+          "type": "number"
+        }
+      }
+    },
+    "PersistedItemImage": {
+      "required": [
+        "image",
+        "isThumbNail",
+        "itemId"
+      ],
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "image": {
+          "format": "byte",
+          "type": "string"
+        },
+        "isThumbNail": {
+          "type": "boolean"
+        },
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ItemImage": {
+      "required": [
+        "image",
+        "isThumbNail",
+        "itemId"
+      ],
+      "type": "object",
+      "properties": {
+        "image": {
+          "format": "byte",
+          "type": "string"
+        },
+        "isThumbNail": {
+          "type": "boolean"
+        },
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedItemLabelPdf": {
+      "required": [
+        "labelPdf",
+        "itemId"
+      ],
+      "type": "object",
+      "properties": {
+        "itemLabelId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "labelPdf": {
+          "format": "byte",
+          "type": "string"
+        },
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ItemLabelPdf": {
+      "required": [
+        "labelPdf",
+        "itemId"
+      ],
+      "type": "object",
+      "properties": {
+        "labelPdf": {
+          "format": "byte",
+          "type": "string"
+        },
+        "itemId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Manufacturer": {
+      "required": [
+        "name",
+        "manufacturerCode"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "manufacturerCode": {
+          "type": "string"
+        }
+      }
+    },
+    "PersistedManufacturer": {
+      "required": [
+        "name",
+        "manufacturerCode"
+      ],
+      "type": "object",
+      "properties": {
+        "manufacturerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "manufacturerCode": {
+          "type": "string"
+        }
+      }
+    },
+    "GetPageResult[PersistedMas500ItemClass]": {
+      "type": "object",
+      "properties": {
+        "pageNumber": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "totalResults": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "currentPage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedMas500ItemClass"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "GetPageResult[PersistedMas500PurchaseProductLine]": {
+      "type": "object",
+      "properties": {
+        "pageNumber": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "totalResults": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "currentPage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedMas500PurchaseProductLine"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "GetPageResult[PersistedMas500SalesProductLine]": {
+      "type": "object",
+      "properties": {
+        "pageNumber": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "totalResults": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "currentPage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedMas500SalesProductLine"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "PersistedNonStockingProduct": {
+      "type": "object",
+      "properties": {
+        "nonStockingProductId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "brand": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "productName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "vendorItemId": {
+          "maxLength": 255,
+          "type": "string"
+        }
+      }
+    },
+    "Product": {
+      "required": [
+        "productName",
+        "brandId",
+        "dateEstablished",
+        "commodityCodeId",
+        "sage500",
+        "taxonomy",
+        "consumerTypes",
+        "alternateProducts",
+        "crossSellProducts",
+        "nonStockingProducts"
+      ],
+      "type": "object",
+      "properties": {
+        "productName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "brandId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "twoDScanRequired": {
+          "type": "boolean"
+        },
+        "dateEstablished": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "commodityCodeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "industryCategoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isFrozen": {
+          "type": "boolean"
+        },
+        "isHeatSensitive": {
+          "type": "boolean"
+        },
+        "isLabKit": {
+          "type": "boolean"
+        },
+        "mandatorySalesMultiple": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prescriptionOnly": {
+          "type": "boolean"
+        },
+        "pronuncation": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "shelfLife": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "specialOrder": {
+          "type": "boolean"
+        },
+        "dateModified": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "sage500": {
+          "$ref": "#/definitions/ProductMas500Specific"
+        },
+        "taxonomy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductXTaxonomy"
+          }
+        },
+        "consumerTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductXConsumerType"
+          }
+        },
+        "alternateProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlternateProduct"
+          }
+        },
+        "crossSellProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CrossSellProduct"
+          }
+        },
+        "nonStockingProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedProductXNonStockingProduct"
+          }
+        }
+      }
+    },
+    "ProductMas500Specific": {
+      "required": [
+        "salesProductLineId"
+      ],
+      "type": "object",
+      "properties": {
+        "salesProductLineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseProductLineId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ProductXTaxonomy": {
+      "required": [
+        "taxonomyId"
+      ],
+      "type": "object",
+      "properties": {
+        "taxonomyId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ProductXConsumerType": {
+      "required": [
+        "consumerTypeId"
+      ],
+      "type": "object",
+      "properties": {
+        "consumerTypeId": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "type": "integer"
+        }
+      }
+    },
+    "AlternateProduct": {
+      "required": [
+        "alternateProductId",
+        "displayOrder",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "alternateProductId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayOrder": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "maxLength": 32,
+          "type": "string"
+        }
+      }
+    },
+    "CrossSellProduct": {
+      "required": [
+        "productId",
+        "displayOrder"
+      ],
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayOrder": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedProductXNonStockingProduct": {
+      "type": "object",
+      "properties": {
+        "nonStockingProductId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedProduct": {
+      "required": [
+        "productName",
+        "brandId",
+        "dateEstablished",
+        "commodityCodeId",
+        "sage500",
+        "taxonomy",
+        "consumerTypes",
+        "alternateProducts",
+        "crossSellProducts",
+        "nonStockingProducts"
+      ],
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "brandId": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "twoDScanRequired": {
+          "type": "boolean"
+        },
+        "dateEstablished": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "commodityCodeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "industryCategoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isFrozen": {
+          "type": "boolean"
+        },
+        "isHeatSensitive": {
+          "type": "boolean"
+        },
+        "isLabKit": {
+          "type": "boolean"
+        },
+        "mandatorySalesMultiple": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prescriptionOnly": {
+          "type": "boolean"
+        },
+        "pronuncation": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "shelfLife": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "specialOrder": {
+          "type": "boolean"
+        },
+        "dateModified": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "sage500": {
+          "$ref": "#/definitions/ProductMas500Specific"
+        },
+        "taxonomy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductXTaxonomy"
+          }
+        },
+        "consumerTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductXConsumerType"
+          }
+        },
+        "alternateProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlternateProduct"
+          }
+        },
+        "crossSellProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CrossSellProduct"
+          }
+        },
+        "nonStockingProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistedProductXNonStockingProduct"
+          }
+        }
+      }
+    },
+    "Taxonomy": {
+      "required": [
+        "displayName",
+        "taxonomyTypeId"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "maxLength": 64,
+          "type": "string"
+        },
+        "taxonomyTypeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedTaxonomy": {
+      "required": [
+        "displayName",
+        "taxonomyTypeId"
+      ],
+      "type": "object",
+      "properties": {
+        "taxonomyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "maxLength": 64,
+          "type": "string"
+        },
+        "taxonomyTypeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "TaxonomyType": {
+      "required": [
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 1024,
+          "type": "string"
+        }
+      }
+    },
+    "PersistedTaxonomyType": {
+      "required": [
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "taxonomyTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 1024,
+          "type": "string"
+        }
+      }
+    },
+    "UnitOfMeasure": {
+      "required": [
+        "displayText"
+      ],
+      "type": "object",
+      "properties": {
+        "isDosage": {
+          "type": "boolean"
+        },
+        "displayText": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "sageUnitMeasKey": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PersistedUnitOfMeasure": {
+      "required": [
+        "displayText"
+      ],
+      "type": "object",
+      "properties": {
+        "unitOfMeasureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDosage": {
+          "type": "boolean"
+        },
+        "displayText": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "sageUnitMeasKey": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    
+  }
+}

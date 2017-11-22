@@ -1,0 +1,81 @@
+var mongoose = require('mongoose');
+
+//Connection
+var options = {
+    user: "userName",
+    pass:"passWord"
+};
+
+mongoose.connect("mongodb://10.10.80.170:27017/dbname,mongodb://10.10.80.170:27017",options);
+
+//Schema
+var Schema = mongoose.Schema;
+var blogSchema = new Schema({
+  title:  String,
+  author: String,
+  body:   String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  hidden: Boolean,
+  meta: {
+    votes: Number,
+    favs:  Number
+  }
+});
+
+//Query
+Person.find({nationality: "Indian"}, 
+    "name", 
+    function(err, response){
+        console.log(response);
+    });
+	
+===================================================================
+	
+Model.findOne(conditions, callback)
+This functions always fetches a single, most relevent document. It has the same exact arguments as Model.find().
+
+Model.findById(id, callback)
+This function takes in the _id(defined by mongo) as the first argument, an optional projection string and a callback to handle the response.
+
+Model.update(condition, updates, callback)
+This function takes a conditions and an updates object as input and applies the changes to all the documents matching the conditions in the collection.
+
+	Person.update({age: 25},
+		{nationality: "American"}, 
+		function(err, response){
+			console.log(response);
+		});
+	
+Model.findOneAndUpdate(condition, updates, callback)
+It does exactly what is says. Finds one document based on the query and updates that according to the second argument. It also takes a callback as last argument. 
+
+	Person.findOneAndUpdate({name: "Ayush"}, 
+		{age: 40}, 
+		function(err, response){
+			console.log(response);
+		});
+	
+Model.findByIdAndUpdate(id, updates, callback)
+This function updates a single document identified by its id. 
+
+	Person.findByIdAndUpdate("507f1f77bcf86cd799439011", 
+		{name: "James"}, 
+		function(err, response){
+			console.log(response);
+		});
+		
+Model.remove(condition, [callback])
+This function takes a condition object as input and removes all documents matching the conditions. For example, if we need to remove all people aged 20,
+>Person.remove({age:20});
+
+Model.findOneAndRemove(condition, [callback])
+This functions removes a single, most relevent document according to conditions object. For example,
+>Person.findOneAndRemove({name: "Ayush"});
+
+Model.findByIdAndRemove(id, [callback])
+This function removes a single document identified by its id. For example,
+>Person.findByIdAndRemove("507f1f77bcf86cd799439011");
+
+=========================================================================
+

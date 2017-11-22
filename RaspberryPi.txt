@@ -1,0 +1,22 @@
+Raspberry Pi:
+Setup New User:
+	1.become root(su command)
+	2.$ useradd {userName}
+	3.$ passwd {userName}, then enter password twice
+	4.$ mkdir /home/{userName}
+	5.$ chown {userName}:users /home/{userName}
+		If you omit the 'chown' command the user will not have permission to save files inside their own home directory!
+
+Enable SSH:
+	$ sudo raspi-config
+
+Terminal on Raspbian:
+	On the Raspberry Pi (running Raspbian), the default terminal application is  LXTerminal
+
+Commands:
+	$ sudo apt-get update updates a list of software packages that are available on your system.
+	$ cp, makes a copy of a file and places it at the specified location (essentially doing a 'copy-paste'), for example - cp file_a /home/other_user/ would copy the file file_a from your home directory to that of the user  other_user (assuming you have permission to copy it there). Note that if the target is a folder, the filename will remain the same, but if the target is a filename, it will give the file the new name.
+	$ mv, moves a file and places it at the specified location (so where cp performs a 'copy-paste', mv performs a 'cut-paste'). The usage is similar to  cp, so mv file_a /home/other_user/ would move the file file_a from your home directory to that of the specified user. mv is also used to rename a file, i.e. move it to a new location, e.g. mv hello.txt story.txt.
+	$ rm, removes the specified file (or directory when used with -r). Warning: Files deleted in this way are generally not restorable.
+	$ mkdir: This makes a new directory, e.g. mkdir new_dir would create the directory new_dir in the present working directory.
+	$ cat lists the contents of files, e.g. cat some_file will display the contents of some_file.

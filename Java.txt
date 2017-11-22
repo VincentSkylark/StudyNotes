@@ -1,0 +1,101 @@
+A class contain:
+	fields, methods, constructors, blocks, nested class and interface
+	
+	syntax:
+	class <class_name>{
+		field;
+		method;
+	}
+	
+	instance variable: a variable created inside the class but outside the method; don't get memory at compile time. get memory at run time when object is created.
+	
+	method: expose behavior of an object.
+	advantage: Code reusability, code optimization
+	
+	new keywords: allocate memory at run time. All objects get memory in Heap memory area.
+	
+We create classes and use it from another class. We can have multiple classes in different java files or single java file. If you define multiple classes in a single java source file, it;s a good idea to save the file name with the class name which has main() method.
+
+3 ways to initialize object
+	by reference variable;
+	by method;
+	by constructor;
+	
+Different ways to create an object:
+	by new keywords;
+	by newInstance() method;
+	by clone() method
+	by deserialization
+	by factory method
+	
+anonymous object: anonymous means nameless. anonymous objec has no reference. It can be used at the time of object creation only.
+
+Constructor in Java: it's a special type of method that is used to initialize the object. Java constructor is involked at the time of object creation.
+	Rules of creating Java Constructor:
+		Constructor name must be same as its class name.
+		Constructor must have no explicit return type.
+	Types of Java Constructor:
+		Default constructor (no-arg constructor)
+		Parameterized constructor
+	
+	Default Constructor: <class_name>(){}
+
+escape sequence:	
+A character preceded by a backslash (\) is an escape sequence and has a special meaning to the compiler.
+
+Primitive data type:
+boolean 1bit, byte 8bit, char 16bit, short 16bit, int 32bit, long(3L) 64bit, float(1.23e10f), double(1.23e10d) 64bit
+
+keyword final:
+	final variable: user can't change the value. (like a constant)
+	final method: method can not be override
+	final class: class can not be extended
+
+Singleton:
+	in Java, Singleton pattern helps us to keep only one instance of a class at any time. The purpose of singleton is to control object creation by keeping private constructor.
+	
+Polymorphism means one type with different shape. In Java there are two types: Compile time polymorphism (static binding) and Runtime polymorphism (dynamic binding). Method overloading is an example of static polymorphism, while method overriding is an example of dynamic polymorphism.
+
+Reflection:
+	Java Reflection makes it possible to inspect classes, interfaces, fields and methods at runtime, without knowing the names of the classes, methods etc. at compile time. It is also possible to instantiate new objects, invoke methods and get/set field values using reflection.
+
+Exceptions:
+	Throwable: checked exceptions except RuntimeException and Error
+		Error:
+			VirtualMachineError
+				OutofMemoryError
+			IOError
+		Exception:
+			RuntimeException: unchecked exception
+			IOException
+			
+	At a time only one Exception is occured and at a time only one catch block is executed.
+	All catch blocks must be ordered from most specific to most general i.e. catch for ArithmeticException must come before catch for Exception .
+
+Usage of keyword "final":
+	final virable: create constant virable;
+	final method: prevent method overriding;
+	final class: prevent inherent;
+
+Abstract class vs Interface:
+	a class that implements an interface must provide an implementation of all the methods of that interface. abstract classes may contain state (data members) and/or implementation (methods) abstract classes can be inherited without implementing the abstract methods (though such a derived class is abstract itself)
+
+Multitasking:
+	process-based multitasking (Multiprocessing)
+		Each pricess allocates separate memory area;
+		switching from one process to another requires some time for saving and loading registers, memory maps, updating lists.
+	thread-based multitasking (Multithreading)
+
+	Note: at least one process is required for each thread;
+
+Life cycle of a thread:
+	New, Runnable, Running, Non-Runnable(Blocked), Terminated
+
+Thread scheduler in Java
+
+Queue:
+	peek(): return the first element without deleting it.
+	element(): same as peek, but throw NoSuchElementException when list is empty
+	poll(): return and remove the first element of the queue
+	delete(): same as poll, but throw NoSuchElementException when list is empty
+	

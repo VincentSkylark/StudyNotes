@@ -1,0 +1,126 @@
+Angular Material:
+1.Autocomplete:
+use md-autocomplete to search for matches from local or remote data source:
+	<md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="What is your favorite US state?">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{ctrl.searchText}}" were found.
+          <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+        </md-not-found>
+	</md-autocomplete>
+	
+Floating Label:
+	<md-autocomplete flex required
+            md-input-name="autocompleteField"
+            md-input-minlength="2"
+            md-input-maxlength="18"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text="ctrl.searchText"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display"
+            md-require-match
+            md-floating-label="Favorite state">
+			
+Open inside Dialog:
+	<md-content class="md-padding">
+    <p>
+      Click the button below to open the dialog with an autocomplete.
+    </p>
+
+    <md-button ng-click="ctrl.openDialog($event)" class="md-raised">Open Dialog</md-button>
+	</md-content>
+	
+	 function DemoCtrl($mdDialog) {
+    var self = this;
+//JS
+    self.openDialog = function($event) {
+      $mdDialog.show({
+        controller: DialogCtrl,
+        controllerAs: 'ctrl',
+        templateUrl: 'dialog.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true
+      })
+    }
+  }
+	
+2. Bottom Sheet
+angular.module('DemoCtrl',['ngMaterial'])
+.config(function($mdIconProvider) {
+    $mdIconProvider
+      .icon('share-arrow', 'img/icons/share-arrow.svg', 24)
+      .icon('upload', 'img/icons/upload.svg', 24)
+      .icon('copy', 'img/icons/copy.svg', 24)
+      .icon('print', 'img/icons/print.svg', 24)
+      .icon('hangout', 'img/icons/hangout.svg', 24)
+      .icon('mail', 'img/icons/mail.svg', 24)
+      .icon('message', 'img/icons/message.svg', 24)
+      .icon('copy2', 'img/icons/copy2.svg', 24)
+      .icon('facebook', 'img/icons/facebook.svg', 24)
+      .icon('twitter', 'img/icons/twitter.svg', 24);
+  });
+
+3. Material Layout: <The Layout engine will log console warnings when it encounters conflicts or known issues.>
+	layout: row | column
+	flex: increments of 5 for 0-100%
+	flex-order: integer from -20 to 20
+	flex-offset: integer increments of 5 for 0-95%
+	layout-align: start | center | end | space-around | space-between + start|center|end|stretch
+	layout-fill
+	layout-wrap
+	layout-nowrap
+	layout-margin
+	layout-padding
+	show / hide
+	
+4. Breakpoints
+	xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl
+	
+	example:
+	<div layout="column" class="zero">
+
+	  <div flex="33" flex-md="{{ vm.box1Width }}" class="one"></div>
+	  <div flex="33" layout="{{ vm.direction }}" layout-md="row" class="two">
+
+		<div flex="20" flex-md="10" hide-lg class="two_one"></div>
+		<div flex="30px" show hide-md="{{ vm.hideBox }}" flex-md="25" class="two_two"></div>
+		<div flex="20" flex-md="65" class="two_three"></div>
+
+	  </div>
+	  <div flex class="three"></div>
+
+	</div>
+	
+5. Layout Container:
+	<div layout="row" layout-xs="colume">
+		<div flex>
+			I'm above on mobile device, and to the left on larger devices.
+		</div>
+		<div flex>
+			I'm below on mobile device, and to the right on larger devices.
+		</div>
+	</div>
+
+6. Child Alignment:
+	layout-align= <alignment in layout direction> <alignment in perpendicular direction>
+	in layout direction: none, start, center, end, space-around, space-between
+	in perepndicular direction: start, center, end, stretch(default)
+	
+7. Extra Options:
+	a. responsive layout: <div layout="row" layout-sm="column"></div>
+	b. margin, padding and fill: <div layout="row" layout-margin | layout-padding | layout-fill style="...">
+	c. show and hide: 

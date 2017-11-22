@@ -1,0 +1,314 @@
+Angular UI Router
+	1.Get UI-Router
+	2.Include angular-ui-router.js in your index.html after angular
+	3.Add ui.router to the main module's list of dependencies
+		var myApp = angular.module('myApp',['ui.router']);
+	4.Nested States & Views
+		(1)add a ui-view directive
+		(2)add ui-sref directive, which auto-generates the href attribute of the <a> tag. 
+		(3)set child templates, which will get plugged into the ui-view.
+		(4)wire it all up with $stateProvider
+		myApp.config(function($stateProvider, $urlRouterProvider) {
+
+	  // For any unmatched url, redirect to /state1
+	  $urlRouterProvider.otherwise("/state1");
+
+	  // Now set up the states
+	  $stateProvider
+		.state('state1', {
+		  url: "/state1",
+		  templateUrl: "partials/state1.html"
+		})
+		.state('state1.list', {
+		  url: "/list",
+		  templateUrl: "partials/state1.list.html",
+		  controller: function($scope) {
+			$scope.items = ["A", "List", "Of", "Items"];
+		  }
+		})
+		.state('state2', {
+		  url: "/state2",
+		  templateUrl: "partials/state2.html"
+		})
+		.state('state2.list', {
+		  url: "/list",
+		  templateUrl: "partials/state2.list.html",
+		  controller: function($scope) {
+			$scope.things = ["A", "Set", "Of", "Things"];
+		  }
+		});
+	});
+	5.Multiple and Named Views
+		This means have multiple ui-view per template.
+		(1)add ui-view to the app, give them names.
+		<!-- index.html -->
+		<body>
+			<div ui-view="viewA"></div>
+			<div ui-view="viewB"></div>
+			<!-- Also a way to navigate -->
+			<a ui-sref="route1">Route 1</a>
+			<a ui-sref="route2">Route 2</a>
+		</body>
+		(2)set up the states in the module config:
+		myApp.config(function($stateProvider) {
+		  $stateProvider
+			.state('index', {
+			  url: "",
+			  views: {
+				"viewA": { template: "index.viewA" },
+				"viewB": { template: "index.viewB" }
+			  }
+			})
+			.state('route1', {
+			  url: "/route1",
+			  views: {
+				"viewA": { template: "route1.viewA" },
+				"viewB": { template: "route1.viewB" }
+			  }
+			})
+			.state('route2', {
+			  url: "/route2",
+			  views: {
+				"viewA": { template: "route2.viewA" },
+				"viewB": { template: "route2.viewB" }
+			  }
+			})
+		});
+		
+Angular API
+	ng-bind,
+	ng-bootstrap,
+	ng-copy,
+	ng-element,
+	ng-equals,
+	ng-extend,
+	ng-forEach,
+	ng-fromJson,
+	
+
+html5Mode([mode]):
+	enabled – {boolean} – (default: false) If true, will rely on history.pushState to change urls where supported. Will fall back to hash-prefixed paths in browsers that do not support pushState.
+	requireBase - {boolean} - (default: true) When html5Mode is enabled, specifies whether or not a tag is required to be present. If enabled and requireBase are true, and a base tag is not present, an error will be thrown when $location is injected. See the $location guide for more information
+	rewriteLinks - {boolean|string} - (default: true) When html5Mode is enabled, enables/disables URL rewriting for relative links. If set to a string, URL rewriting will only happen on links with an attribute that matches the given string. For example, if set to 'internal-link', then the URL will only be rewritten for <a internal-link> links. Note that attribute name normalization does not apply here, so 'internalLink' will not match 'internal-link'.
+	
+Node.JS
+	Linux: Linux require root to listen on port 80 and 443 for HTTP(S) service
+		$sudo node server.js
+	Using chmod +s to allow nodjs run as root
+		$sudo chown root /usr/local/bin/node
+		$sudo chmod +S /usr/local/bin/node
+	
+	Module:
+		using command "require, exports, module" to manipulate mudules
+		"require": var foo1 = require('./foo.js');
+			var data = require('./data.json');
+		"exports":
+			exports.hello = function(){
+			console.log('Hello World!');
+			};
+		"module": change default export target from object to a function
+			module.exports = function(){
+			console.log('Hello World!');
+			};
+			Notice: module will init only once when it's firstly loaded.
+	
+		Main module: used to start the program
+			$ node main.js
+		(binary module): programmed in C/C++ with extend name .node;
+		
+	Path find rules:
+		Pre-set module:
+			if module imported by "require" is NodeJS pre-set module. then no path reveal
+		node_modules:
+			if file has absolute path /home/user/hello.js, then "require('foo/bar')" will try the following
+				/home/user/node_modules/foo/bar
+				/home/node_modules/foo/bar
+				/node_modules/foo/bar
+		NODE_PATH:
+			linux: NODE_PATH=/home/user/lib:/home/lib (separate by :)
+			Windows:  NODE_PATH=/home/user/lib;/home/lib (separate by ;)
+				order:
+					/home/user/lib/foo/bar
+					/home/lib/foo/bar
+					
+	Package:
+		index structure:
+			- /home/user/lib/
+				- cat/
+					head.js
+					body.js
+					main.js
+		if package has name index.js, then path name can be used as package name
+		package.json:
+			content:
+			{
+				"name": "cat",
+				"main": "./lib/main.js"
+			}
+			
+	Project Index:
+		- /home/user/workspace/node-echo/   # 工程目录
+			- bin/                          # 存放命令行相关代码
+				node-echo
+			+ doc/                          # 存放文档
+			- lib/                          # 存放API相关代码
+				echo.js
+			- node_modules/                 # 存放三方包
+				+ argv/
+			+ tests/                        # 存放测试用例
+			package.json                    # 元数据文件
+			README.md                       # 说明文件
+	
+	Version Code:
+		语义版本号分为X.Y.Z三位，分别代表主版本号、次版本号和补丁版本号。
+		+ 如果只是修复bug，需要更新Z位。
+		+ 如果是新增了功能，但是向下兼容，需要更新Y位。
+		+ 如果有大变动，向下不兼容，需要更新X位。
+		
+	Files Manipulation:
+		small file copy: make use of build in module fs:
+		
+			var fs = require('fs');
+			
+			function copy(src, dst) {
+				fs.writeFileSync(dst, fs.readFileSync(src));
+			}
+
+			function main(argv) {
+				copy(argv[0], argv[1]);
+			}
+
+			main(process.argv.slice(2));
+		
+		豆知识： process是一个全局变量，可通过process.argv获得命令行参数。由于argv[0]固定等于NodeJS执行程序的绝对路径，argv[1]固定等于主模块的绝对路径，因此第一个命令行参数从argv[2]这个位置开始。
+		
+		Usage: $ node main.js data.txt file2/copyData.txt
+		This will create a copy of ./data.txt at ./file2/copyData.txt
+		
+		large file copy:
+			
+			var fs = require('fs');
+
+			function copy(src, dst) {
+				fs.createReadStream(src).pipe(fs.createWriteStream(dst));
+			}
+
+			function main(argv) {
+				copy(argv[0], argv[1]);
+			}
+
+			main(process.argv.slice(2));
+	
+	API Preview:
+		Buffer （数据块）
+		官方文档： http://nodejs.org/api/buffer.html
+		Stream （数据流）
+		官方文档： http://nodejs.org/api/stream.html
+		Stream基于事件机制工作，所有Stream的实例都继承于NodeJS提供的EventEmitter。
+		File System （文件系统）
+		官方文档： http://nodejs.org/api/fs.html
+		Path （路径）
+		官方文档： http://nodejs.org/api/path.html
+		坑出没注意：
+			标准化之后的路径里的斜杠在Windows系统下是\，而在Linux系统下是/。如果想保证任何系统下都使用/作为路径分隔符的话，需要用.replace(/\\/g, '/')再替换一下标准路径。
+	
+	Traversing file index Sync:
+	function travel(dir, callback){
+		fs.readdirSync(dir).forEach(function (file){
+			var pathname = path.join(dir, file);
+			if(fs.stateSync(pathname).isDirectory()){
+				travel(pathname, callback);
+			}else{
+				callback(pathname);
+			}
+		});
+	}
+	
+	Network:
+	Simple HTTP Server:
+		var http = require('http');
+		
+		http.createServer(function (request,response){
+			response.writeHead(200,{'Content-Type':'text-plain'});
+			response.end('Hello World\n');
+		}).listen(8124);
+	
+	Take request as read-only data stream:
+		http.createServer(function(request,response){
+			var body = [];
+			console.log(request.method);
+			console.log(request.headers);
+			
+			request.on('data',function(chunk){
+				body.push(chunk);
+			});
+			
+			request.on('end',function(){
+				body = Buffer.concat(body);
+				console.log(body.toString());
+			}).listen(80);
+		});
+		
+	Client Side Sending HTTP request:
+		var option = {
+			hostname:'www.example.com',
+			port:80,
+			path:'/upload',
+			method:'POST',
+			headers:{
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		};
+		
+		var request = http.request(options, function(response){});
+		request.write('Hello World');
+		request.end();
+	
+	HTTPS module:
+		same with HTTP module, but need extra methods for SSL certification
+		如果目标服务器使用的SSL证书是自制的，不是从颁发机构购买的，默认情况下https模块会拒绝连接，提示说有证书安全问题。在options里加入rejectUnauthorized:false字段可以禁用对证书有效性的检查，从而允许https模块请求开发环境下使用自制证书的HTTPS服务器。
+		
+		var options = {
+			//...
+			key: fs.readFileSync('./ssl/default.key'),
+			certLfs.readFielSync('./ssl/default.cer')
+		};
+		var server = https.createServer(options, function (request,response){});
+		
+	URL:处理HTTP请求时url模块使用率超高，因为该模块允许解析URL、生成URL，以及拼接URL。
+	                           href
+	 -----------------------------------------------------------------
+								host              path
+						  --------------- ----------------------------
+	 http: // user:pass @ host.com : 8080 /p/a/t/h ?query=string #hash
+	 -----    ---------   --------   ---- -------- ------------- -----
+	protocol     auth     hostname   port pathname     search     hash
+													------------
+													   query
+	Parse url to object:
+		url.parse('http://user:pass@host.com:8080/p/a/t/h?query=string#hash');
+		this will return object:
+		{ protocol: 'http:',
+		  auth: 'user:pass',
+		  host: 'host.com:8080',
+		  port: '8080',
+		  hostname: 'host.com',
+		  hash: '#hash',
+		  search: '?query=string',
+		  query: 'query=string',
+		  pathname: '/p/a/t/h',
+		  path: '/p/a/t/h?query=string',
+		  href: 'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'
+		}
+		
+	Convert URL Object to String:
+	url.format({
+		protocol: 'http:',
+		host: 'www.example.com',
+		pathname: '/p/a/t/h',
+		search: 'query=string'
+	});
+	
+	return: 'http://www.example.com/p/a/t/h?query=string'
+	
+	Zlib:
